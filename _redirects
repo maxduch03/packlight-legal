@@ -1,0 +1,4 @@
+# Clean URLs for Cloudflare Pages
+/privacy    /privacy.html    200
+/terms      /terms.html      200
+/legal      /legal.html      200
