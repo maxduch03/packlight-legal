@@ -6,7 +6,7 @@ import ComingSoon from '../../../components/ComingSoon.astro';
 const entries = (await getCollection('destinations', (e) => e.data.lang === 'en' && e.data.published))
   .sort((a, b) => a.data.order - b.data.order);
 ---
-<BaseLayout title="Destinations">
+<BaseLayout title="Destinations" noindex={true}>
   {entries.length === 0 ? (
     <ComingSoon frPath="/fr/destinations" />
   ) : (

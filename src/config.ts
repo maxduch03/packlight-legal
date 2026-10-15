@@ -5,13 +5,13 @@
 export const STORE_SMART_LINK = 'https://app.getpacklight.com/?utm_source=site';
 
 /** Stripe Payment Link de l'offre Affinage (69 €). */
-export const STRIPE_PAYMENT_LINK = 'STRIPE_PAYMENT_LINK';
+export const STRIPE_PAYMENT_LINK = 'https://buy.stripe.com/4gM5kEcNod2fd8A9oxd3i00';
 
 /** Endpoint Formspree — capture email pour l'ebook. */
 export const FORMSPREE_EBOOK = 'https://formspree.io/f/mwlvaqey';
 
-/** Endpoint Formspree — formulaire de l'offre Affinage. */
-export const FORMSPREE_AFFINAGE = 'https://formspree.io/f/mrperlzd';
+/** Email perso pour les demandes d'Affinage (envoi du lien d'itinéraire). */
+export const AFFINAGE_EMAIL = 'm.ducher2403@gmail.com';
 
 /** Lien de téléchargement direct de l'ebook (affiché après soumission). */
 export const EBOOK_PDF = '/ebook/checklist-depart-pvt.pdf';

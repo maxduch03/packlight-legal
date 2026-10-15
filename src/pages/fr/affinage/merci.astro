@@ -1,0 +1,39 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import { AFFINAGE_EMAIL } from '../../../config';
+
+const mailto = `mailto:${AFFINAGE_EMAIL}?subject=${encodeURIComponent('Affinage PackLight')}`;
+---
+<BaseLayout title="Merci" description="Paiement reçu — merci pour ta confiance." noindex={true}>
+  <section class="section">
+    <div class="container prose merci">
+      <div class="merci-check" aria-hidden="true">✓</div>
+      <h1>Paiement reçu</h1>
+      <p class="lead">
+        Merci&nbsp;! Je reviens vers toi <strong>sous 48&nbsp;h</strong> à l'adresse e-mail
+        indiquée sur ton reçu Stripe.
+      </p>
+      <p>
+        Tu as oublié de joindre ton itinéraire&nbsp;? Envoie-moi simplement le
+        <strong>lien de partage</strong> de ton itinéraire PackLight par mail&nbsp;:
+      </p>
+      <p>
+        <a class="btn btn-primary" href={mailto}>Envoyer mon lien d'itinéraire</a>
+      </p>
+      <p class="merci-note">Objet du mail : « Affinage PackLight » — {AFFINAGE_EMAIL}</p>
+      <p><a href="/fr/">← Retour à l'accueil</a></p>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .merci { text-align: center; }
+  .merci-check {
+    width: 64px; height: 64px; margin: 0 auto 1.25rem;
+    display: flex; align-items: center; justify-content: center;
+    background: var(--teal); color: #fff; border-radius: 50%;
+    font-size: 2rem; font-weight: 700;
+  }
+  .merci .lead { font-size: 1.15rem; margin: 1rem 0 1.5rem; }
+  .merci-note { color: var(--ink-muted); font-size: 0.9rem; margin-top: 0.75rem; }
+</style>

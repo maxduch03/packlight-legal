@@ -1,95 +1,120 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import { FORMSPREE_AFFINAGE, STRIPE_PAYMENT_LINK } from '../../config';
+import StoreButtons from '../../components/StoreButtons.astro';
+import { STRIPE_PAYMENT_LINK } from '../../config';
+
+const payHref = `${STRIPE_PAYMENT_LINK}?utm_source=site&utm_campaign=affinage`;
 ---
 <BaseLayout
   title="Affinage"
-  description="Un itinéraire sur-mesure, affiné à la main. 69 € — livré sous quelques jours."
+  description="Ton itinéraire PackLight relu et ajusté par un humain qui connaît le terrain. 69 €, retour sous 48 h."
 >
-  <!-- OFFRE -->
+  <!-- PROMESSE -->
   <section class="section affinage-hero">
     <div class="container">
       <span class="badge">Affinage</span>
-      <h1>Ton itinéraire, ciselé à la main.</h1>
+      <h1>Ton itinéraire PackLight relu et ajusté par un humain qui connaît le terrain.</h1>
       <p class="lead">
-        PackLight génère une base en 30 secondes. L'Affinage va plus loin : on
-        reprend ton projet et on te livre un itinéraire sur-mesure, pensé par un
-        humain qui connaît ta destination.
+        L'app te donne une base solide en 30 secondes. L'Affinage, c'est un regard
+        humain par-dessus : on reprend ton itinéraire, on l'ajuste, et on répond à
+        tes questions — pour que tu partes vraiment serein.
       </p>
-      <div class="price">
-        <span class="price-amount">69&nbsp;€</span>
-        <span class="price-note">paiement unique · livré sous quelques jours</span>
+      <a href={payHref} class="btn btn-amber btn-lg">Lancer mon Affinage — 69&nbsp;€</a>
+      <p class="price-note">69 € TTC — TVA non applicable, art. 293 B du CGI</p>
+    </div>
+  </section>
+
+  <!-- POUR QUI -->
+  <section class="section">
+    <div class="container">
+      <h2>Pour qui</h2>
+      <div class="cards-3">
+        <div class="card">
+          <h3>Départ en PVT</h3>
+          <p>Tu pars en Working Holiday et tu veux sécuriser tes premières semaines sur place.</p>
+        </div>
+        <div class="card">
+          <h3>Premier grand voyage</h3>
+          <p>C'est ton premier long voyage et tu veux éviter les erreurs classiques.</p>
+        </div>
+        <div class="card">
+          <h3>Itinéraire multi-villes</h3>
+          <p>Ton voyage enchaîne plusieurs étapes et tu veux un enchaînement qui tienne la route.</p>
+        </div>
       </div>
     </div>
   </section>
 
   <!-- CE QUE TU REÇOIS -->
-  <section class="section">
+  <section class="section section-sand">
     <div class="container">
+      <h2>Ce que tu reçois</h2>
       <ul class="includes">
-        <li>Un itinéraire jour par jour, optimisé selon ton rythme et ton budget.</li>
-        <li>Des adresses confidentielles, loin des pièges à touristes.</li>
-        <li>Des alternatives selon la météo, ton profil et tes envies.</li>
-        <li>Un échange pour ajuster avant la version finale.</li>
+        <li>Ton itinéraire ajusté : rythme, enchaînement et timing revus.</li>
+        <li>3 conseils terrain concrets, propres à ta destination.</li>
+        <li>Les réponses à tes questions sur le voyage.</li>
+        <li>Le tout par mail, avec un retour sous 48&nbsp;h.</li>
       </ul>
     </div>
   </section>
 
-  <!-- FORMULAIRE -->
+  <!-- COMMENT ÇA MARCHE -->
   <section class="section">
-    <div class="container prose">
-      <h2>Lance ton Affinage</h2>
-      <p>Décris ton projet. On revient vers toi, puis tu règles les 69&nbsp;€ pour lancer le travail.</p>
+    <div class="container">
+      <h2>Comment ça marche</h2>
+      <ol class="steps">
+        <li>
+          <span class="step-num">1</span>
+          <div><strong>Génère ton voyage</strong><p>Crée ton itinéraire dans l'app PackLight.</p></div>
+        </li>
+        <li>
+          <span class="step-num">2</span>
+          <div><strong>Paie 69&nbsp;€</strong><p>Règle en ligne et colle ton e-mail ou le lien de partage de ton itinéraire.</p></div>
+        </li>
+        <li>
+          <span class="step-num">3</span>
+          <div><strong>Reçois la version affinée</strong><p>Tu reçois ton itinéraire ajusté par mail, sous 48&nbsp;h.</p></div>
+        </li>
+      </ol>
+    </div>
+  </section>
 
-      <form class="affinage-form" action={FORMSPREE_AFFINAGE} method="POST">
-        <input type="hidden" name="_subject" value="Nouvelle demande d'Affinage — PackLight" />
-        <input type="hidden" name="source" value="site — formulaire affinage" />
+  <!-- PRIX / CTA -->
+  <section class="section">
+    <div class="container prix-cta">
+      <div class="price-amount">69&nbsp;€</div>
+      <p class="price-note">69 € TTC — TVA non applicable, art. 293 B du CGI</p>
+      <a href={payHref} class="btn btn-amber btn-lg">Lancer mon Affinage</a>
+    </div>
+  </section>
 
-        <div class="field">
-          <label for="af-dest">Destination</label>
-          <input id="af-dest" name="destination" type="text" required placeholder="Ex. Japon, Pérou, road-trip Écosse…" />
+  <!-- FAQ -->
+  <section class="section section-sand">
+    <div class="container">
+      <h2>Questions fréquentes</h2>
+      <div class="faq">
+        <div class="faq-item">
+          <h3>Sous combien de temps je reçois mon itinéraire&nbsp;?</h3>
+          <p>Sous 48&nbsp;h après réception de ton paiement et de ton itinéraire.</p>
         </div>
-
-        <div class="field-row">
-          <div class="field">
-            <label for="af-start">Date de départ</label>
-            <input id="af-start" name="date_depart" type="date" />
-          </div>
-          <div class="field">
-            <label for="af-end">Date de retour</label>
-            <input id="af-end" name="date_retour" type="date" />
-          </div>
+        <div class="faq-item">
+          <h3>Et si tu ne peux pas traiter ma demande&nbsp;?</h3>
+          <p>Si je ne peux pas traiter ta demande, tu es intégralement remboursé sous 24&nbsp;h.</p>
         </div>
-
-        <div class="field">
-          <label for="af-profil">Profil de voyage</label>
-          <select id="af-profil" name="profil">
-            <option value="">Choisis…</option>
-            <option>Solo</option>
-            <option>En couple</option>
-            <option>En famille</option>
-            <option>Entre amis</option>
-          </select>
+        <div class="faq-item">
+          <h3>Les réservations sont-elles comprises&nbsp;?</h3>
+          <p>Non : l'Affinage porte sur l'itinéraire et les conseils. Aucune réservation n'est à ma charge.</p>
         </div>
-
-        <div class="field">
-          <label for="af-notes">Ton projet en quelques mots</label>
-          <textarea id="af-notes" name="projet" rows="4" placeholder="Budget, style, envies, contraintes…"></textarea>
-        </div>
-
-        <div class="field">
-          <label for="af-email">Ton email</label>
-          <input id="af-email" name="email" type="email" required placeholder="ton@email.com" autocomplete="email" />
-        </div>
-
-        <button type="submit" class="btn btn-primary">Envoyer ma demande</button>
-      </form>
-
-      <div class="affinage-next" hidden>
-        <p class="affinage-ok">Demande reçue ! Dernière étape : règle ton Affinage pour lancer le travail.</p>
-        <a class="btn btn-amber" href={STRIPE_PAYMENT_LINK} data-stripe>Payer 69&nbsp;€</a>
       </div>
-      <p class="affinage-error" hidden>Oups, une erreur est survenue. Réessaie dans un instant.</p>
+    </div>
+  </section>
+
+  <!-- PAS ENCORE L'APP -->
+  <section class="section">
+    <div class="container app-cta">
+      <h2>Pas encore l'app&nbsp;?</h2>
+      <p>Commence par générer ton itinéraire gratuitement dans PackLight.</p>
+      <StoreButtons medium="affinage" />
     </div>
   </section>
 </BaseLayout>
@@ -97,60 +122,54 @@ import { FORMSPREE_AFFINAGE, STRIPE_PAYMENT_LINK } from '../../config';
 <style>
   .affinage-hero { padding-bottom: 1rem; }
   .badge {
-    display: inline-block;
-    background: var(--amber); color: #fff;
+    display: inline-block; background: var(--amber); color: #fff;
     font-size: 0.75rem; font-weight: 700; letter-spacing: 0.5px;
     text-transform: uppercase; padding: 0.3rem 0.7rem;
     border-radius: 999px; margin-bottom: 1rem;
   }
-  .lead { font-size: 1.15rem; max-width: 52ch; margin: 1rem 0 1.5rem; }
-  .price { display: flex; align-items: baseline; gap: 0.75rem; flex-wrap: wrap; }
-  .price-amount { font-family: var(--font-display); font-size: 2.6rem; font-weight: 700; color: var(--teal); }
-  .price-note { color: var(--ink-muted); font-size: 0.95rem; }
+  .lead { font-size: 1.15rem; max-width: 54ch; margin: 1rem 0 1.75rem; }
+  .btn-lg { font-size: 1.05rem; padding: 1rem 1.75rem; }
+  .price-note { color: var(--ink-muted); font-size: 0.9rem; margin-top: 0.75rem; }
 
-  .includes { list-style: none; margin: 0; display: grid; gap: 0.75rem; }
+  .section-sand { background: var(--sand-2); }
+
+  .cards-3 { display: grid; gap: 1.25rem; margin-top: 1.5rem; }
+  .card {
+    background: var(--surface); border: 1px solid var(--sand-line);
+    border-radius: var(--radius); padding: 1.5rem; box-shadow: var(--shadow);
+  }
+  .card h3 { margin-bottom: 0.5rem; }
+  .card p { margin: 0; font-size: 0.95rem; }
+
+  .includes { list-style: none; margin: 1.5rem 0 0; display: grid; gap: 0.75rem; }
   .includes li { padding-left: 1.75rem; position: relative; color: var(--ink-soft); }
-  .includes li::before {
-    content: "✓"; position: absolute; left: 0; top: 0;
-    color: var(--teal); font-weight: 700;
+  .includes li::before { content: "✓"; position: absolute; left: 0; color: var(--teal); font-weight: 700; }
+
+  .steps { list-style: none; margin: 1.5rem 0 0; display: grid; gap: 1.25rem; }
+  .steps li { display: flex; gap: 1rem; align-items: flex-start; }
+  .steps p { margin: 0.2rem 0 0; font-size: 0.95rem; }
+  .step-num {
+    flex: 0 0 auto; width: 36px; height: 36px;
+    display: flex; align-items: center; justify-content: center;
+    background: var(--teal); color: #fff; border-radius: 50%;
+    font-weight: 700; font-family: var(--font-display);
   }
 
-  .affinage-form { display: grid; gap: 1rem; margin-top: 1.5rem; }
-  .field { display: grid; gap: 0.4rem; }
-  .field-row { display: grid; gap: 1rem; }
-  .affinage-ok { color: var(--teal); font-weight: 600; }
-  .affinage-next { margin-top: 1.5rem; }
-  .affinage-error { color: var(--amber-dark); font-weight: 600; margin-top: 1rem; }
+  .prix-cta { text-align: center; }
+  .price-amount { font-family: var(--font-display); font-size: 3.2rem; font-weight: 700; color: var(--teal); }
+  .prix-cta .price-note { margin-bottom: 1.25rem; }
 
-  @media (min-width: 560px) {
-    .field-row { grid-template-columns: 1fr 1fr; }
+  .faq { display: grid; gap: 1.25rem; margin-top: 1.5rem; }
+  .faq-item h3 { margin-bottom: 0.3rem; font-size: 1.05rem; }
+  .faq-item p { margin: 0; }
+
+  .app-cta { text-align: center; }
+  .app-cta p { margin: 0.5rem 0 1.25rem; }
+  .app-cta .store-buttons { justify-content: center; }
+
+  @media (min-width: 720px) {
+    .cards-3 { grid-template-columns: repeat(3, 1fr); }
     .includes { grid-template-columns: 1fr 1fr; }
+    .faq { grid-template-columns: 1fr 1fr; }
   }
 </style>
-
-<script>
-  const form = document.querySelector<HTMLFormElement>('.affinage-form');
-  const next = document.querySelector<HTMLElement>('.affinage-next');
-  const errorMsg = document.querySelector<HTMLElement>('.affinage-error');
-
-  form?.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    errorMsg?.setAttribute('hidden', '');
-    try {
-      const res = await fetch(form.action, {
-        method: 'POST',
-        body: new FormData(form),
-        headers: { Accept: 'application/json' },
-      });
-      if (res.ok) {
-        form.setAttribute('hidden', '');
-        next?.removeAttribute('hidden');
-        next?.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      } else {
-        errorMsg?.removeAttribute('hidden');
-      }
-    } catch {
-      errorMsg?.removeAttribute('hidden');
-    }
-  });
-</script>

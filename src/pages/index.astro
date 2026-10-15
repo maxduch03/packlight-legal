@@ -1,5 +1,7 @@
 ---
-// Page racine : détecte la langue du navigateur et redirige. Repli FR.
+// Page racine. Tant que l'EN n'est pas rempli, on redirige TOUJOURS vers /fr/.
+// La détection de langue du navigateur sera réactivée quand le contenu EN existera
+// (voir historique : bloc navigator.language commenté ci-dessous).
 ---
 <!DOCTYPE html>
 <html lang="fr">
@@ -10,10 +12,11 @@
   <title>PackLight</title>
   <link rel="canonical" href="https://getpacklight.com/fr/" />
   <script is:inline>
-    (function () {
-      var l = (navigator.language || navigator.userLanguage || 'fr').toLowerCase();
-      window.location.replace(l.indexOf('en') === 0 ? '/en/' : '/fr/');
-    })();
+    // Redirection fixe vers le FR (EN non rempli en v1).
+    // Réactiver la détection quand l'EN sera disponible :
+    // var l = (navigator.language || navigator.userLanguage || 'fr').toLowerCase();
+    // window.location.replace(l.indexOf('en') === 0 ? '/en/' : '/fr/');
+    window.location.replace('/fr/');
   </script>
   <meta http-equiv="refresh" content="0; url=/fr/" />
 </head>
