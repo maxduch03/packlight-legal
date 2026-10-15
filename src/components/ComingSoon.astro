@@ -1,0 +1,23 @@
+---
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
+
+interface Props {
+  /** Chemin équivalent côté FR (ex. "/fr/affinage"). */
+  frPath?: string;
+}
+const { frPath = '/fr/' } = Astro.props;
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+<section class="section">
+  <div class="container prose comingsoon">
+    <h1>{t('comingsoon.title')}</h1>
+    <p>{t('comingsoon.body')}</p>
+    <a href={frPath} class="btn btn-primary">{t('comingsoon.toFr')}</a>
+  </div>
+</section>
+
+<style>
+  .comingsoon { text-align: center; padding: 2rem 0; }
+  .comingsoon p { margin: 1rem 0 1.75rem; }
+</style>

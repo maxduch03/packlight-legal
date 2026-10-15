@@ -1,18 +1,23 @@
 ---
 import { STORE_SMART_LINK } from '../config';
+import { getLangFromUrl, useTranslations, localizedPath } from '../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const download = `${STORE_SMART_LINK}&utm_medium=nav`;
 ---
 <header class="site-header">
   <div class="container bar">
-    <a href="/" class="brand">
+    <a href={localizedPath(lang)} class="brand">
       <img src="/assets/icon_packlight_512.png" alt="PackLight" width="30" height="30" />
       <span>PackLight</span>
     </a>
     <nav class="nav">
-      <a href="/destinations">Destinations</a>
-      <a href="/affinage">Affinage</a>
-      <a href="/a-propos">À&nbsp;propos</a>
-      <a href="/partenaires">Partenaires</a>
-      <a href={STORE_SMART_LINK} class="btn btn-primary nav-cta">Télécharger</a>
+      <a href={localizedPath(lang, 'destinations')}>{t('nav.destinations')}</a>
+      <a href={localizedPath(lang, 'affinage')}>{t('nav.affinage')}</a>
+      <a href={localizedPath(lang, 'a-propos')}>{t('nav.about')}</a>
+      <a href={localizedPath(lang, 'partenaires')}>{t('nav.partners')}</a>
+      <a href={download} class="btn btn-primary nav-cta">{t('nav.download')}</a>
     </nav>
   </div>
 </header>

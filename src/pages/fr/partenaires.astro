@@ -1,0 +1,40 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { CONTACT_EMAIL } from '../../config';
+---
+<BaseLayout
+  title="Partenaires"
+  description="Travaillons ensemble : offices de tourisme, créateurs, plateformes de réservation."
+>
+  <section class="section">
+    <div class="container prose">
+      <h1>Partenaires</h1>
+
+      <!-- Contenu d'exemple — à remplacer par ton texte. -->
+      <p>
+        PackLight accompagne des voyageurs au moment précis où ils décident de
+        partir — là où l'intention est la plus forte. Si tu veux toucher cette
+        audience ou enrichir l'expérience de nos utilisateurs, parlons-en.
+      </p>
+
+      <h2>Avec qui nous collaborons</h2>
+      <ul>
+        <li><strong>Offices de tourisme & destinations</strong> — mettre en avant une région au bon moment du parcours.</li>
+        <li><strong>Plateformes de réservation</strong> — vols, hébergements, activités intégrés à l'itinéraire.</li>
+        <li><strong>Créateurs & médias voyage</strong> — contenus, codes et partenariats d'affiliation.</li>
+      </ul>
+
+      <h2>Travaillons ensemble</h2>
+      <p>
+        Une idée, une proposition&nbsp;? Écris-nous à
+        <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a> — on répond vite.
+      </p>
+
+      <p>
+        <a class="btn btn-primary" href={`mailto:${CONTACT_EMAIL}?subject=Partenariat%20PackLight`}>
+          Devenir partenaire
+        </a>
+      </p>
+    </div>
+  </section>
+</BaseLayout>

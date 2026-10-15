@@ -1,5 +1,9 @@
 ---
 import { CONTACT_EMAIL } from '../config';
+import { getLangFromUrl, useTranslations, localizedPath } from '../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 const year = new Date().getFullYear();
 ---
 <footer class="site-footer">
@@ -9,30 +13,28 @@ const year = new Date().getFullYear();
         <img src="/assets/icon_packlight_512.png" alt="" width="30" height="30" />
         <span>PackLight</span>
       </div>
-      <p style="color: rgba(255,255,255,0.72); max-width: 32ch;">
-        Partir devrait être aussi simple que d'en avoir envie.
-      </p>
+      <p style="color: rgba(255,255,255,0.72); max-width: 32ch;">{t('footer.tagline')}</p>
     </div>
     <div>
-      <strong style="color:#fff; display:block; margin-bottom:0.6rem;">Explorer</strong>
+      <strong style="color:#fff; display:block; margin-bottom:0.6rem;">{t('footer.explore')}</strong>
       <nav style="flex-direction: column; gap: 0.55rem;">
-        <a href="/destinations">Destinations</a>
-        <a href="/affinage">Affinage</a>
-        <a href="/a-propos">À propos</a>
-        <a href="/partenaires">Partenaires</a>
+        <a href={localizedPath(lang, 'destinations')}>{t('nav.destinations')}</a>
+        <a href={localizedPath(lang, 'affinage')}>{t('nav.affinage')}</a>
+        <a href={localizedPath(lang, 'a-propos')}>{t('nav.about')}</a>
+        <a href={localizedPath(lang, 'partenaires')}>{t('nav.partners')}</a>
       </nav>
     </div>
     <div>
-      <strong style="color:#fff; display:block; margin-bottom:0.6rem;">Légal</strong>
+      <strong style="color:#fff; display:block; margin-bottom:0.6rem;">{t('footer.legal')}</strong>
       <nav style="flex-direction: column; gap: 0.55rem;">
-        <a href="/privacy">Confidentialité</a>
-        <a href="/terms">Conditions</a>
-        <a href="/legal">Mentions légales</a>
-        <a href={`mailto:${CONTACT_EMAIL}`}>Contact</a>
+        <a href="/privacy">{t('footer.privacy')}</a>
+        <a href="/terms">{t('footer.terms')}</a>
+        <a href="/legal">{t('footer.legalNotice')}</a>
+        <a href={`mailto:${CONTACT_EMAIL}`}>{t('footer.contact')}</a>
       </nav>
     </div>
   </div>
   <div class="container">
-    <p class="legal-note">© {year} PackLight — Maxime Ducher. Tous droits réservés.</p>
+    <p class="legal-note">© {year} PackLight — Maxime Ducher. {t('footer.rights')}</p>
   </div>
 </footer>

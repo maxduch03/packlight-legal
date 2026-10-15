@@ -1,0 +1,51 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+
+const entries = (await getCollection('destinations', (e) => e.data.lang === 'fr' && e.data.published))
+  .sort((a, b) => a.data.order - b.data.order);
+---
+<BaseLayout
+  title="Destinations"
+  description="Des guides prêts à l'emploi pour transformer ton envie de voyage en itinéraire."
+>
+  <section class="section">
+    <div class="container">
+      <h1>Destinations</h1>
+      <p class="intro">Choisis une destination, inspire-toi, puis génère ton itinéraire en 30 secondes.</p>
+
+      <div class="dest-grid">
+        {entries.map((e) => (
+          <a class="dest-card" href={`/fr/destinations/${e.data.pageSlug}`}>
+            {e.data.hero && <img src={e.data.hero} alt={e.data.title} />}
+            <div class="dest-card-body">
+              <h3>{e.data.title}</h3>
+              <p>{e.data.description}</p>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .intro { margin: 0.75rem 0 2rem; max-width: 52ch; }
+  .dest-grid { display: grid; gap: 1.25rem; }
+  .dest-card {
+    display: block;
+    background: var(--surface);
+    border: 1px solid var(--sand-line);
+    border-radius: var(--radius);
+    overflow: hidden;
+    color: var(--ink);
+    box-shadow: var(--shadow);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+  }
+  .dest-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-lg); }
+  .dest-card img { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; }
+  .dest-card-body { padding: 1.25rem 1.5rem 1.5rem; }
+  .dest-card h3 { margin-bottom: 0.4rem; }
+  .dest-card p { margin: 0; font-size: 0.95rem; color: var(--ink-soft); }
+  @media (min-width: 720px) { .dest-grid { grid-template-columns: repeat(3, 1fr); } }
+</style>

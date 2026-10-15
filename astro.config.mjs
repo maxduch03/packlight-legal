@@ -7,4 +7,11 @@ export default defineConfig({
   site: 'https://getpacklight.com',
   output: 'static',
   trailingSlash: 'never',
+  i18n: {
+    defaultLocale: 'fr',
+    locales: ['fr', 'en'],
+    routing: {
+      prefixDefaultLocale: true,
+    },
+  },
 });

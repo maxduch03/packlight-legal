@@ -1,117 +1,23 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
-import StoreButtons from '../components/StoreButtons.astro';
-import ReelEmbed from '../components/ReelEmbed.astro';
-import FeatureBlock from '../components/FeatureBlock.astro';
-import EmailCapture from '../components/EmailCapture.astro';
+// Page racine : détecte la langue du navigateur et redirige. Repli FR.
 ---
-<BaseLayout>
-  <!-- HERO -->
-  <section class="hero">
-    <div class="container hero-grid">
-      <div class="hero-copy">
-        <h1>Partir devrait être aussi simple que d'en avoir envie.</h1>
-        <p class="lead">
-          PackLight transforme une envie de voyage en itinéraire complet, réservable,
-          avec ta checklist prête — en quelques secondes.
-        </p>
-        <StoreButtons medium="hero" />
-        <p class="hero-micro">Gratuit · Sans compte · iOS &amp; Android</p>
-      </div>
-      <div class="hero-visual">
-        <ReelEmbed />
-      </div>
-    </div>
-  </section>
-
-  <!-- 3 BLOCS -->
-  <section class="section features-section">
-    <div class="container">
-      <div class="features-grid">
-        <FeatureBlock icon="⚡" title="Itinéraire en 30 s">
-          Dis-nous où, quand et ton style. PackLight génère un itinéraire jour par jour,
-          pensé pour toi, en moins d'une minute.
-        </FeatureBlock>
-        <FeatureBlock icon="🧭" title="Tout réservable">
-          Vols, hébergements, activités : chaque étape est liée à une option réservable.
-          De l'inspiration au départ, sans quitter l'app.
-        </FeatureBlock>
-        <FeatureBlock icon="✅" title="Checklist">
-          Une liste d'affaires adaptée à ta destination, ta durée et ta météo.
-          Tu coches, tu pars l'esprit léger.
-        </FeatureBlock>
-      </div>
-    </div>
-  </section>
-
-  <!-- ENCART AFFINAGE -->
-  <section class="section">
-    <div class="container">
-      <div class="affinage-card">
-        <div class="affinage-copy">
-          <span class="affinage-badge">Affinage</span>
-          <h2>Un itinéraire ciselé à la main</h2>
-          <p>
-            Tu veux aller plus loin ? On reprend ton projet et on te livre un itinéraire
-            sur-mesure, affiné par un humain : adresses confidentielles, timing optimisé,
-            alternatives selon ton profil.
-          </p>
-          <a href="/affinage" class="btn btn-ghost">Découvrir l'Affinage — 69&nbsp;€</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CAPTURE EBOOK -->
-  <section class="section">
-    <div class="container">
-      <EmailCapture />
-    </div>
-  </section>
-</BaseLayout>
-
-<style>
-  .hero { padding: 2.5rem 0 1rem; }
-  .hero-grid { display: grid; gap: 2.5rem; align-items: center; }
-  .hero-copy .lead {
-    font-size: 1.15rem;
-    margin: 1.25rem 0 1.75rem;
-    max-width: 42ch;
-  }
-  .hero-micro {
-    margin-top: 1rem;
-    font-size: 0.85rem;
-    color: var(--ink-muted);
-  }
-
-  .features-grid { display: grid; gap: 1.25rem; }
-
-  .affinage-card {
-    background: linear-gradient(135deg, var(--sand-2), var(--amber-soft));
-    border: 1px solid var(--sand-line);
-    border-radius: var(--radius);
-    padding: 2.5rem 1.75rem;
-  }
-  .affinage-copy { max-width: 48ch; }
-  .affinage-badge {
-    display: inline-block;
-    background: var(--amber);
-    color: #fff;
-    font-size: 0.75rem;
-    font-weight: 700;
-    letter-spacing: 0.5px;
-    text-transform: uppercase;
-    padding: 0.3rem 0.7rem;
-    border-radius: 999px;
-    margin-bottom: 1rem;
-  }
-  .affinage-copy h2 { margin-bottom: 0.75rem; }
-  .affinage-copy p { margin-bottom: 1.5rem; }
-
-  @media (min-width: 820px) {
-    .hero { padding: 4rem 0 2rem; }
-    .hero-grid { grid-template-columns: 1.1fr 0.9fr; gap: 3.5rem; }
-    .features-grid { grid-template-columns: repeat(3, 1fr); }
-    .affinage-card { padding: 3rem; }
-  }
-</style>
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, follow" />
+  <title>PackLight</title>
+  <link rel="canonical" href="https://getpacklight.com/fr/" />
+  <script is:inline>
+    (function () {
+      var l = (navigator.language || navigator.userLanguage || 'fr').toLowerCase();
+      window.location.replace(l.indexOf('en') === 0 ? '/en/' : '/fr/');
+    })();
+  </script>
+  <meta http-equiv="refresh" content="0; url=/fr/" />
+</head>
+<body>
+  <p>Redirection… <a href="/fr/">PackLight</a></p>
+</body>
+</html>

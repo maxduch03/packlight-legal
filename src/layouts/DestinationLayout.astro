@@ -1,0 +1,118 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import BaseLayout from './BaseLayout.astro';
+import StoreButtons from '../components/StoreButtons.astro';
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
+
+interface Props {
+  entry: CollectionEntry<'destinations'>;
+}
+const { entry } = Astro.props;
+const d = entry.data;
+const { Content } = await entry.render();
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+<BaseLayout title={d.title} description={d.description} ogImage={d.hero ?? '/assets/og-default.png'}>
+  <article class="dest">
+    <!-- EN-TÊTE / CONTEXTE -->
+    <header class="dest-hero">
+      <div class="container">
+        <h1>{d.title}</h1>
+        <p class="dest-lead">{d.description}</p>
+      </div>
+      {d.hero && (
+        <div class="container">
+          <img class="dest-hero-img" src={d.hero} alt={d.title} />
+        </div>
+      )}
+    </header>
+
+    <!-- CONTEXTE (corps markdown) -->
+    <section class="section">
+      <div class="container prose dest-context">
+        <Content />
+      </div>
+    </section>
+
+    <!-- CAPTURE ITINÉRAIRE -->
+    {d.itineraryImage && (
+      <section class="section dest-capture-section">
+        <div class="container dest-capture">
+          <img src={d.itineraryImage} alt={`Itinéraire PackLight — ${d.title}`} />
+        </div>
+      </section>
+    )}
+
+    <!-- 3 CONSEILS -->
+    <section class="section">
+      <div class="container">
+        <div class="dest-tips">
+          {d.tips.map((tip, i) => (
+            <div class="dest-tip">
+              <span class="dest-tip-num">{i + 1}</span>
+              <p>{tip}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="section">
+      <div class="container dest-cta">
+        <h2>{t('cta.generate')}</h2>
+        <StoreButtons medium="destination" />
+      </div>
+    </section>
+  </article>
+</BaseLayout>
+
+<style>
+  .dest-hero { padding: 2.5rem 0 1rem; }
+  .dest-lead { font-size: 1.15rem; max-width: 52ch; margin-top: 1rem; }
+  .dest-hero-img {
+    width: 100%;
+    border-radius: var(--radius);
+    margin-top: 1.75rem;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    box-shadow: var(--shadow);
+  }
+
+  .dest-capture { max-width: 420px; margin: 0 auto; }
+  .dest-capture img {
+    width: 100%;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-lg);
+  }
+
+  .dest-tips { display: grid; gap: 1rem; }
+  .dest-tip {
+    display: flex;
+    gap: 1rem;
+    background: var(--surface);
+    border: 1px solid var(--sand-line);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    box-shadow: var(--shadow);
+  }
+  .dest-tip-num {
+    flex: 0 0 auto;
+    width: 36px; height: 36px;
+    display: flex; align-items: center; justify-content: center;
+    background: var(--teal); color: #fff;
+    border-radius: 50%; font-weight: 700;
+    font-family: var(--font-display);
+  }
+  .dest-tip p { margin: 0; }
+
+  .dest-cta { text-align: center; }
+  .dest-cta h2 { margin-bottom: 1.25rem; }
+  .dest-cta .store-buttons { justify-content: center; }
+
+  @media (min-width: 820px) {
+    .dest-tips { grid-template-columns: repeat(3, 1fr); }
+    .dest-tip { flex-direction: column; }
+  }
+</style>

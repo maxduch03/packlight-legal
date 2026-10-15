@@ -1,0 +1,44 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import StoreButtons from '../../components/StoreButtons.astro';
+---
+<BaseLayout
+  title="À propos"
+  description="L'histoire derrière PackLight : rendre la préparation d'un voyage aussi légère que l'envie de partir."
+>
+  <section class="section">
+    <div class="container prose">
+      <h1>À propos</h1>
+
+      <!-- Contenu d'exemple — à remplacer par ton texte. -->
+      <p>
+        PackLight est né d'un constat simple : préparer un voyage devrait être
+        la partie excitante, pas la corvée. Entre les dizaines d'onglets ouverts,
+        les blogs contradictoires et les heures passées à comparer, l'envie de
+        partir finit souvent par s'épuiser avant même le départ.
+      </p>
+      <p>
+        L'application transforme une simple envie — une destination, des dates,
+        un style — en itinéraire complet, réservable, avec la checklist qui va
+        avec. Le tout en quelques secondes, sans compte, sans friction.
+      </p>
+
+      <h2>Qui est derrière</h2>
+      <p>
+        PackLight est édité par Maxime Ducher, voyageur et développeur, depuis la
+        France. Le projet est pensé en solo, à taille humaine, avec une obsession :
+        que chaque fonctionnalité serve réellement le départ.
+      </p>
+
+      <h2>Notre promesse</h2>
+      <p>
+        Partir devrait être aussi simple que d'en avoir envie. C'est la seule
+        boussole derrière chaque décision produit.
+      </p>
+
+      <div style="margin-top: 2rem;">
+        <StoreButtons medium="about" />
+      </div>
+    </div>
+  </section>
+</BaseLayout>
