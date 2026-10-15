@@ -12,6 +12,9 @@ export default defineConfig({
     locales: ['fr', 'en'],
     routing: {
       prefixDefaultLocale: true,
+      // On gère la racine nous-mêmes (détection navigateur + repli FR)
+      // dans src/pages/index.astro, donc pas de redirection auto d'Astro.
+      redirectToDefaultLocale: false,
     },
   },
 });
