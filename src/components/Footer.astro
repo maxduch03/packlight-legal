@@ -1,0 +1,38 @@
+---
+import { CONTACT_EMAIL } from '../config';
+const year = new Date().getFullYear();
+---
+<footer class="site-footer">
+  <div class="container cols">
+    <div>
+      <div class="brand">
+        <img src="/assets/icon_packlight_512.png" alt="" width="30" height="30" />
+        <span>PackLight</span>
+      </div>
+      <p style="color: rgba(255,255,255,0.72); max-width: 32ch;">
+        Partir devrait être aussi simple que d'en avoir envie.
+      </p>
+    </div>
+    <div>
+      <strong style="color:#fff; display:block; margin-bottom:0.6rem;">Explorer</strong>
+      <nav style="flex-direction: column; gap: 0.55rem;">
+        <a href="/destinations">Destinations</a>
+        <a href="/affinage">Affinage</a>
+        <a href="/a-propos">À propos</a>
+        <a href="/partenaires">Partenaires</a>
+      </nav>
+    </div>
+    <div>
+      <strong style="color:#fff; display:block; margin-bottom:0.6rem;">Légal</strong>
+      <nav style="flex-direction: column; gap: 0.55rem;">
+        <a href="/privacy">Confidentialité</a>
+        <a href="/terms">Conditions</a>
+        <a href="/legal">Mentions légales</a>
+        <a href={`mailto:${CONTACT_EMAIL}`}>Contact</a>
+      </nav>
+    </div>
+  </div>
+  <div class="container">
+    <p class="legal-note">© {year} PackLight — Maxime Ducher. Tous droits réservés.</p>
+  </div>
+</footer>
