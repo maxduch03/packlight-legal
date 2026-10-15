@@ -8,10 +8,10 @@ export const STORE_SMART_LINK = 'https://app.getpacklight.com/?utm_source=site';
 export const STRIPE_PAYMENT_LINK = 'STRIPE_PAYMENT_LINK';
 
 /** Endpoint Formspree — capture email pour l'ebook. */
-export const FORMSPREE_EBOOK = 'https://formspree.io/f/FORMSPREE_EBOOK_ID';
+export const FORMSPREE_EBOOK = 'https://formspree.io/f/mwlvaqey';
 
 /** Endpoint Formspree — formulaire de l'offre Affinage. */
-export const FORMSPREE_AFFINAGE = 'https://formspree.io/f/FORMSPREE_AFFINAGE_ID';
+export const FORMSPREE_AFFINAGE = 'https://formspree.io/f/mrperlzd';
 
 /** Lien de téléchargement direct de l'ebook (affiché après soumission). */
 export const EBOOK_PDF = '/ebook/checklist-depart-pvt.pdf';

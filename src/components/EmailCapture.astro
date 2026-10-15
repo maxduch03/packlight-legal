@@ -1,0 +1,84 @@
+---
+import { FORMSPREE_EBOOK, EBOOK_PDF } from '../config';
+---
+<div class="capture" id="ebook">
+  <div class="capture-inner">
+    <h2>Reçois la checklist de départ</h2>
+    <p>Notre ebook gratuit : la checklist complète pour préparer ton départ sans rien oublier. Entre ton email, le lien de téléchargement s'affiche aussitôt.</p>
+
+    <form class="capture-form" action={FORMSPREE_EBOOK} method="POST" data-ebook={EBOOK_PDF}>
+      <input type="hidden" name="_subject" value="Nouveau téléchargement ebook — PackLight" />
+      <input type="hidden" name="source" value="site — capture ebook" />
+      <label class="sr-only" for="ebook-email">Adresse email</label>
+      <input id="ebook-email" type="email" name="email" required placeholder="ton@email.com" autocomplete="email" />
+      <button type="submit" class="btn btn-amber">Recevoir la checklist</button>
+    </form>
+
+    <p class="capture-success" hidden>
+      Merci ! <a class="capture-dl" href={EBOOK_PDF} target="_blank" rel="noopener">Télécharge ta checklist ici →</a>
+    </p>
+    <p class="capture-error" hidden>Oups, une erreur est survenue. Réessaie dans un instant.</p>
+    <p class="capture-note">Pas de spam. Désinscription en un clic.</p>
+  </div>
+</div>
+
+<style>
+  .capture {
+    background: var(--teal);
+    color: #fff;
+    border-radius: var(--radius);
+    padding: 2.5rem 1.5rem;
+    box-shadow: var(--shadow-lg);
+  }
+  .capture-inner { max-width: 560px; margin: 0 auto; text-align: center; }
+  .capture h2 { color: #fff; }
+  .capture p { color: rgba(255, 255, 255, 0.88); }
+  .capture-form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin: 1.5rem 0 0.75rem;
+  }
+  .capture-success a { color: #fff; text-decoration: underline; font-weight: 600; }
+  .capture-error { color: var(--amber-soft); font-weight: 600; }
+  .capture-note { font-size: 0.82rem; color: rgba(255, 255, 255, 0.7); margin-top: 0.5rem; }
+  .sr-only {
+    position: absolute; width: 1px; height: 1px;
+    padding: 0; margin: -1px; overflow: hidden;
+    clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
+  }
+  @media (min-width: 560px) {
+    .capture { padding: 3rem; }
+    .capture-form { flex-direction: row; }
+    .capture-form input { flex: 1; }
+    .capture-form .btn { white-space: nowrap; }
+  }
+</style>
+
+<script>
+  const form = document.querySelector<HTMLFormElement>('.capture-form');
+  const success = document.querySelector<HTMLElement>('.capture-success');
+  const errorMsg = document.querySelector<HTMLElement>('.capture-error');
+
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    errorMsg?.setAttribute('hidden', '');
+    try {
+      const res = await fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { Accept: 'application/json' },
+      });
+      if (res.ok) {
+        form.setAttribute('hidden', '');
+        success?.removeAttribute('hidden');
+        const dl = success?.querySelector<HTMLAnchorElement>('.capture-dl');
+        dl?.click();
+      } else {
+        errorMsg?.removeAttribute('hidden');
+      }
+    } catch {
+      errorMsg?.removeAttribute('hidden');
+    }
+  });
+</script>

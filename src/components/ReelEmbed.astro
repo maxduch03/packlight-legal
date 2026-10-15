@@ -1,0 +1,52 @@
+---
+import { INSTAGRAM_REEL_URL } from '../config';
+
+// Tant que l'URL n'est pas renseignée, on affiche le poster de secours.
+const hasReel = INSTAGRAM_REEL_URL !== 'INSTAGRAM_REEL_URL' && INSTAGRAM_REEL_URL.length > 0;
+const poster = '/assets/reel-poster.jpg';
+---
+<div class="reel">
+  {hasReel ? (
+    <blockquote
+      class="instagram-media"
+      data-instgrm-permalink={INSTAGRAM_REEL_URL}
+      data-instgrm-version="14"
+      style="margin:0; width:100%;"
+    ></blockquote>
+    <script is:inline async src="https://www.instagram.com/embed.js"></script>
+  ) : (
+    <div class="reel-poster">
+      <img src={poster} alt="Aperçu de l'application PackLight en action" />
+      <span class="reel-play" aria-hidden="true">▶</span>
+    </div>
+  )}
+</div>
+
+<style>
+  .reel {
+    width: 100%;
+    max-width: 360px;
+    margin: 0 auto;
+  }
+  .reel-poster {
+    position: relative;
+    aspect-ratio: 9 / 16;
+    border-radius: var(--radius);
+    overflow: hidden;
+    background: var(--sand-2);
+    box-shadow: var(--shadow-lg);
+  }
+  .reel-poster img { width: 100%; height: 100%; object-fit: cover; }
+  .reel-play {
+    position: absolute;
+    inset: 0;
+    margin: auto;
+    width: 64px; height: 64px;
+    display: flex; align-items: center; justify-content: center;
+    background: rgba(15, 118, 110, 0.92);
+    color: #fff;
+    border-radius: 50%;
+    font-size: 1.4rem;
+    padding-left: 4px;
+  }
+</style>
