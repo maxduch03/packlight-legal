@@ -13,7 +13,7 @@ const { Content } = await entry.render();
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 ---
-<BaseLayout title={d.title} description={d.description} ogImage={d.hero ?? '/assets/og-default.png'}>
+<BaseLayout title={d.title} description={d.description} ogImage={d.hero ?? '/assets/og-default.jpg'}>
   <article class="dest">
     <!-- EN-TÊTE / CONTEXTE -->
     <header class="dest-hero">
