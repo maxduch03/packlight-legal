@@ -1,4 +1,9 @@
 {
+  "redirects": [
+    { "source": "/fr/affinage/merci", "destination": "/fr/sur-mesure/merci", "permanent": true },
+    { "source": "/fr/affinage", "destination": "/fr/sur-mesure", "permanent": true },
+    { "source": "/en/affinage", "destination": "/en/sur-mesure", "permanent": true }
+  ],
   "rewrites": [
     { "source": "/privacy", "destination": "/privacy.html" },
     { "source": "/terms", "destination": "/terms.html" },

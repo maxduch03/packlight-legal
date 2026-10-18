@@ -4,7 +4,19 @@ import { getLangFromUrl, useTranslations, localizedPath } from '../i18n/utils';
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
-const download = `${STORE_SMART_LINK}&utm_medium=nav`;
+const download = `${STORE_SMART_LINK}&utm_campaign=header`;
+
+const path = Astro.url.pathname.replace(/\/+$/, '') || '/';
+const links = [
+  { href: localizedPath(lang, 'destinations'), label: t('nav.destinations') },
+  { href: localizedPath(lang, 'sur-mesure'), label: t('nav.affinage') },
+  { href: localizedPath(lang, 'a-propos'), label: t('nav.about') },
+  { href: localizedPath(lang, 'partenaires'), label: t('nav.partners') },
+];
+const isActive = (href: string) => {
+  const h = href.replace(/\/+$/, '') || '/';
+  return path === h || path.startsWith(h + '/');
+};
 ---
 <header class="site-header">
   <div class="container bar">
@@ -12,12 +24,71 @@ const download = `${STORE_SMART_LINK}&utm_medium=nav`;
       <img src="/assets/logo-64.png" alt="PackLight" width="30" height="30" />
       <span>PackLight</span>
     </a>
-    <nav class="nav">
-      <a href={localizedPath(lang, 'destinations')}>{t('nav.destinations')}</a>
-      <a href={localizedPath(lang, 'affinage')}>{t('nav.affinage')}</a>
-      <a href={localizedPath(lang, 'a-propos')}>{t('nav.about')}</a>
-      <a href={localizedPath(lang, 'partenaires')}>{t('nav.partners')}</a>
+
+    <nav class="nav" aria-label="Navigation principale">
+      {links.map((l) => (
+        <a
+          href={l.href}
+          class:list={['nav-link', { active: isActive(l.href) }]}
+          aria-current={isActive(l.href) ? 'page' : undefined}
+        >{l.label}</a>
+      ))}
       <a href={download} class="btn btn-primary nav-cta">{t('nav.download')}</a>
+    </nav>
+
+    <button
+      type="button"
+      class="nav-toggle"
+      aria-label="Ouvrir le menu"
+      aria-expanded="false"
+      aria-controls="mobile-nav"
+    >
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+
+  <div class="mobile-nav" id="mobile-nav" hidden>
+    <nav aria-label="Navigation mobile">
+      {links.map((l) => (
+        <a
+          href={l.href}
+          class:list={['mobile-link', { active: isActive(l.href) }]}
+          aria-current={isActive(l.href) ? 'page' : undefined}
+        >{l.label}</a>
+      ))}
+      <a href={download} class="btn btn-primary mobile-cta">{t('nav.download')}</a>
     </nav>
   </div>
 </header>
+
+<script is:inline>
+  (function () {
+    var toggle = document.querySelector('.nav-toggle');
+    var panel = document.getElementById('mobile-nav');
+    if (!toggle || !panel) return;
+
+    function setOpen(open) {
+      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      toggle.setAttribute('aria-label', open ? 'Fermer le menu' : 'Ouvrir le menu');
+      toggle.classList.toggle('is-open', open);
+      document.body.classList.toggle('nav-locked', open);
+      if (open) {
+        panel.hidden = false;
+        requestAnimationFrame(function () { panel.classList.add('open'); });
+      } else {
+        panel.classList.remove('open');
+        setTimeout(function () { panel.hidden = true; }, 200);
+      }
+    }
+
+    toggle.addEventListener('click', function () {
+      setOpen(toggle.getAttribute('aria-expanded') !== 'true');
+    });
+    panel.addEventListener('click', function (e) {
+      if (e.target.closest('a')) setOpen(false);
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && toggle.getAttribute('aria-expanded') === 'true') setOpen(false);
+    });
+  })();
+</script>

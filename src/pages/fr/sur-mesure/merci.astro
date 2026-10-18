@@ -2,7 +2,7 @@
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import { AFFINAGE_EMAIL } from '../../../config';
 
-const mailto = `mailto:${AFFINAGE_EMAIL}?subject=${encodeURIComponent('Affinage PackLight')}`;
+const mailto = `mailto:${AFFINAGE_EMAIL}?subject=${encodeURIComponent('Sur-mesure PackLight')}`;
 ---
 <BaseLayout title="Merci" description="Paiement reçu — merci pour ta confiance." noindex={true}>
   <section class="section">
@@ -20,7 +20,7 @@ const mailto = `mailto:${AFFINAGE_EMAIL}?subject=${encodeURIComponent('Affinage 
       <p>
         <a class="btn btn-primary" href={mailto}>Envoyer mon lien d'itinéraire</a>
       </p>
-      <p class="merci-note">Objet du mail : « Affinage PackLight » — {AFFINAGE_EMAIL}</p>
+      <p class="merci-note">Objet du mail : « Sur-mesure PackLight » — {AFFINAGE_EMAIL}</p>
       <p><a href="/fr/">← Retour à l'accueil</a></p>
     </div>
   </section>

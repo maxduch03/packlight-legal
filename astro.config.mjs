@@ -15,7 +15,7 @@ export default defineConfig({
         const { pathname } = new URL(page);
         if (pathname === '/en' || pathname.startsWith('/en/')) return false;
         if (pathname === '/') return false;
-        if (pathname.includes('/affinage/merci')) return false;
+        if (pathname.includes('/sur-mesure/merci')) return false;
         return true;
       },
     }),

@@ -3,23 +3,23 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import StoreButtons from '../../components/StoreButtons.astro';
 import { STRIPE_PAYMENT_LINK } from '../../config';
 
-const payHref = `${STRIPE_PAYMENT_LINK}?utm_source=site&utm_campaign=affinage`;
+const payHref = `${STRIPE_PAYMENT_LINK}?utm_source=site&utm_campaign=sur-mesure`;
 ---
 <BaseLayout
-  title="Affinage"
-  description="Ton itinéraire PackLight relu et ajusté par un humain qui connaît le terrain. 69 €, retour sous 48 h."
+  title="Sur-mesure"
+  description="Ton itinéraire PackLight, ajusté sur-mesure par Maxime. 69 €, retour sous 48 h."
 >
   <!-- PROMESSE -->
   <section class="section affinage-hero">
     <div class="container">
-      <span class="badge">Affinage</span>
-      <h1>Ton itinéraire PackLight relu et ajusté par un humain qui connaît le terrain.</h1>
+      <span class="badge">Sur-mesure</span>
+      <h1>Ton itinéraire PackLight, ajusté sur-mesure par Maxime.</h1>
       <p class="lead">
-        L'app te donne une base solide en 30 secondes. L'Affinage, c'est un regard
-        humain par-dessus : on reprend ton itinéraire, on l'ajuste, et on répond à
-        tes questions — pour que tu partes vraiment serein.
+        L'app te donne une base solide en 30 secondes. Le Sur-mesure, c'est un regard
+        humain par-dessus : on part de ton itinéraire généré dans l'app, on l'ajuste, et
+        on répond à tes questions — pour que tu partes vraiment serein.
       </p>
-      <a href={payHref} class="btn btn-amber btn-lg">Lancer mon Affinage — 69&nbsp;€</a>
+      <a href={payHref} class="btn btn-amber btn-lg">Lancer mon Sur-mesure — 69&nbsp;€</a>
       <p class="price-note">69 € TTC — TVA non applicable, art. 293 B du CGI</p>
     </div>
   </section>
@@ -84,7 +84,7 @@ const payHref = `${STRIPE_PAYMENT_LINK}?utm_source=site&utm_campaign=affinage`;
     <div class="container prix-cta">
       <div class="price-amount">69&nbsp;€</div>
       <p class="price-note">69 € TTC — TVA non applicable, art. 293 B du CGI</p>
-      <a href={payHref} class="btn btn-amber btn-lg">Lancer mon Affinage</a>
+      <a href={payHref} class="btn btn-amber btn-lg">Lancer mon Sur-mesure</a>
     </div>
   </section>
 
@@ -103,7 +103,7 @@ const payHref = `${STRIPE_PAYMENT_LINK}?utm_source=site&utm_campaign=affinage`;
         </div>
         <div class="faq-item">
           <h3>Les réservations sont-elles comprises&nbsp;?</h3>
-          <p>Non : l'Affinage porte sur l'itinéraire et les conseils. Aucune réservation n'est à ma charge.</p>
+          <p>Non : le Sur-mesure porte sur l'itinéraire et les conseils. Aucune réservation n'est à ma charge.</p>
         </div>
       </div>
     </div>
@@ -114,7 +114,7 @@ const payHref = `${STRIPE_PAYMENT_LINK}?utm_source=site&utm_campaign=affinage`;
     <div class="container app-cta">
       <h2>Pas encore l'app&nbsp;?</h2>
       <p>Commence par générer ton itinéraire gratuitement dans PackLight.</p>
-      <StoreButtons medium="affinage" />
+      <StoreButtons medium="sur-mesure" />
     </div>
   </section>
 </BaseLayout>

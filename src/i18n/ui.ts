@@ -11,10 +11,10 @@ export const defaultLang = 'fr';
 export const ui = {
   fr: {
     'nav.destinations': 'Destinations',
-    'nav.affinage': 'Affinage',
+    'nav.affinage': 'Sur-mesure',
     'nav.about': 'À propos',
     'nav.partners': 'Partenaires',
-    'nav.download': 'Télécharger',
+    'nav.download': "Télécharger l'app",
 
     'footer.explore': 'Explorer',
     'footer.legal': 'Légal',
@@ -35,10 +35,10 @@ export const ui = {
   },
   en: {
     'nav.destinations': 'Destinations',
-    'nav.affinage': 'Fine-tuning',
+    'nav.affinage': 'Made-to-measure',
     'nav.about': 'About',
     'nav.partners': 'Partners',
-    'nav.download': 'Download',
+    'nav.download': 'Download the app',
 
     'footer.explore': 'Explore',
     'footer.legal': 'Legal',
