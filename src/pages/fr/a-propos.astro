@@ -23,6 +23,14 @@ import StoreButtons from '../../components/StoreButtons.astro';
       </p>
 
       <h2>Qui est derrière</h2>
+      <img
+        class="about-portrait"
+        src="/assets/maxime.webp"
+        alt="Portrait de Maxime Ducher, fondateur de PackLight"
+        width="1200"
+        height="1200"
+        loading="lazy"
+      />
       <p>
         PackLight est créé par Maxime Ducher, journaliste pendant cinq ans dans des
         rédactions parisiennes, parti vivre un an en Australie avec un PVT. L'app est
@@ -43,3 +51,21 @@ import StoreButtons from '../../components/StoreButtons.astro';
     </div>
   </section>
 </BaseLayout>
+
+<style>
+  .about-portrait {
+    display: block;
+    width: 220px;
+    max-width: 60%;
+    height: auto;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    margin: 0.5rem 0 1.5rem;
+  }
+  @media (min-width: 640px) {
+    .about-portrait {
+      float: right;
+      margin: 0 0 1rem 1.5rem;
+    }
+  }
+</style>

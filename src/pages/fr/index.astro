@@ -8,6 +8,11 @@ import EmailCapture from '../../components/EmailCapture.astro';
 <BaseLayout>
   <!-- HERO -->
   <section class="hero">
+    <picture class="hero-bg">
+      <source media="(max-width: 767px)" srcset="/assets/hero-mobile.webp" />
+      <img src="/assets/hero-desktop.webp" alt="Voyageur bras ouverts face aux îles de Komodo, en Indonésie" width="1600" height="900" fetchpriority="high" />
+    </picture>
+    <div class="hero-overlay"></div>
     <div class="container hero-grid">
       <div class="hero-copy">
         <h1>Partir devrait être aussi simple que d'en avoir envie.</h1>
@@ -44,6 +49,32 @@ import EmailCapture from '../../components/EmailCapture.astro';
     </div>
   </section>
 
+  <!-- EXEMPLES GÉNÉRÉS -->
+  <section class="section examples-section">
+    <div class="container">
+      <h2 class="examples-title">Exemples générés</h2>
+      <p class="examples-sub">Des itinéraires réels, créés en quelques secondes dans l'app.</p>
+      <div class="examples-row">
+        <figure class="example">
+          <img src="/assets/destinations/bali-itineraire.webp" alt="Itinéraire PackLight généré pour Bali" width="760" height="1600" loading="lazy" />
+          <figcaption>Bali</figcaption>
+        </figure>
+        <figure class="example">
+          <img src="/assets/destinations/thailande-itineraire.webp" alt="Itinéraire PackLight généré pour la Thaïlande" width="760" height="1600" loading="lazy" />
+          <figcaption>Thaïlande</figcaption>
+        </figure>
+        <figure class="example">
+          <img src="/assets/destinations/new-york-itineraire.webp" alt="Itinéraire PackLight généré pour New York" width="760" height="1600" loading="lazy" />
+          <figcaption>New York</figcaption>
+        </figure>
+        <figure class="example">
+          <img src="/assets/destinations/lisbonne-itineraire.webp" alt="Itinéraire PackLight généré pour Lisbonne" width="760" height="1600" loading="lazy" />
+          <figcaption>Lisbonne</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
   <!-- ENCART AFFINAGE -->
   <section class="section">
     <div class="container">
@@ -71,20 +102,70 @@ import EmailCapture from '../../components/EmailCapture.astro';
 </BaseLayout>
 
 <style>
-  .hero { padding: 2.5rem 0 1rem; }
+  .hero {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    padding: 2.5rem 0 3rem;
+  }
+  .hero-bg { position: absolute; inset: 0; z-index: -2; }
+  .hero-bg img { width: 100%; height: 100%; object-fit: cover; }
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: linear-gradient(180deg, rgba(8, 28, 26, 0.7) 0%, rgba(8, 28, 26, 0.55) 100%);
+  }
   .hero-grid { display: grid; gap: 2.5rem; align-items: center; }
+  .hero-copy { color: #fff; }
+  .hero-copy h1 { color: #fff; }
   .hero-copy .lead {
     font-size: 1.15rem;
     margin: 1.25rem 0 1.75rem;
     max-width: 42ch;
+    color: rgba(255, 255, 255, 0.92);
   }
   .hero-micro {
     margin-top: 1rem;
     font-size: 0.85rem;
-    color: var(--ink-muted);
+    color: rgba(255, 255, 255, 0.82);
   }
 
   .features-grid { display: grid; gap: 1.25rem; }
+
+  /* GALERIE EXEMPLES */
+  .examples-title { text-align: center; }
+  .examples-sub {
+    text-align: center;
+    color: var(--ink-muted);
+    margin: 0.5rem 0 1.75rem;
+  }
+  .examples-row {
+    display: flex;
+    gap: 1rem;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 0.5rem;
+  }
+  .example {
+    flex: 0 0 68%;
+    max-width: 260px;
+    margin: 0;
+    scroll-snap-align: center;
+  }
+  .example img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-lg);
+  }
+  .example figcaption {
+    text-align: center;
+    margin-top: 0.6rem;
+    font-weight: 600;
+  }
 
   .affinage-card {
     background: linear-gradient(135deg, var(--sand-2), var(--amber-soft));
@@ -109,9 +190,18 @@ import EmailCapture from '../../components/EmailCapture.astro';
   .affinage-copy p { margin-bottom: 1.5rem; }
 
   @media (min-width: 820px) {
-    .hero { padding: 4rem 0 2rem; }
+    .hero { padding: 5rem 0 4rem; }
     .hero-grid { grid-template-columns: 1.1fr 0.9fr; gap: 3.5rem; }
+    .hero-overlay {
+      background: linear-gradient(90deg, rgba(8, 28, 26, 0.78) 0%, rgba(8, 28, 26, 0.5) 42%, rgba(8, 28, 26, 0.1) 72%);
+    }
     .features-grid { grid-template-columns: repeat(3, 1fr); }
     .affinage-card { padding: 3rem; }
+    .examples-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      overflow: visible;
+    }
+    .example { flex: none; max-width: none; }
   }
 </style>

@@ -1,3 +1,6 @@
+# source assets (non optimisés, hors build)
+site-assets/
+_preview.jpg
 # build output
 dist/
 # generated types

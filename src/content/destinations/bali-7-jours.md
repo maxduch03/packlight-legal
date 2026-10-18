@@ -3,8 +3,9 @@ lang: fr
 pageSlug: bali-7-jours
 title: "Bali en 7 jours"
 description: "Un premier voyage à Bali, entre rizières, temples et plages, sans courir."
-hero: /assets/destinations/bali.jpg
-itineraryImage: /assets/destinations/bali-itineraire.png
+hero: /assets/destinations/bali-desktop.webp
+heroMobile: /assets/destinations/bali-mobile.webp
+itineraryImage: /assets/destinations/bali-itineraire.webp
 order: 10
 published: true
 tips:

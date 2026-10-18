@@ -23,7 +23,10 @@ const t = useTranslations(lang);
       </div>
       {d.hero && (
         <div class="container">
-          <img class="dest-hero-img" src={d.hero} alt={d.title} />
+          <picture>
+            {d.heroMobile && <source media="(max-width: 767px)" srcset={d.heroMobile} />}
+            <img class="dest-hero-img" src={d.hero} alt={`${d.title} — paysage`} width="1600" height="900" />
+          </picture>
         </div>
       )}
     </header>
@@ -39,7 +42,7 @@ const t = useTranslations(lang);
     {d.itineraryImage && (
       <section class="section dest-capture-section">
         <div class="container dest-capture">
-          <img src={d.itineraryImage} alt={`Itinéraire PackLight — ${d.title}`} />
+          <img src={d.itineraryImage} alt={`Capture de l'itinéraire PackLight généré pour ${d.title}`} width="760" height="1600" loading="lazy" />
         </div>
       </section>
     )}
@@ -72,11 +75,11 @@ const t = useTranslations(lang);
   .dest-hero { padding: 2.5rem 0 1rem; }
   .dest-lead { font-size: 1.15rem; max-width: 52ch; margin-top: 1rem; }
   .dest-hero-img {
+    display: block;
     width: 100%;
+    height: auto;
     border-radius: var(--radius);
     margin-top: 1.75rem;
-    aspect-ratio: 16 / 9;
-    object-fit: cover;
     box-shadow: var(--shadow);
   }
 

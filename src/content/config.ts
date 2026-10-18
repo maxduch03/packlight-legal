@@ -10,8 +10,9 @@ const destinations = defineCollection({
     title: z.string(),
     // Phrase courte d'accroche / meta description.
     description: z.string(),
-    // Image d'en-tête (chemin dans public/). Placeholder possible.
+    // Image d'en-tête desktop (16:9) et variante mobile (4:5), chemins dans public/.
     hero: z.string().optional(),
+    heroMobile: z.string().optional(),
     // Capture d'un itinéraire généré pour cette destination.
     itineraryImage: z.string().optional(),
     // Exactement 3 conseils.

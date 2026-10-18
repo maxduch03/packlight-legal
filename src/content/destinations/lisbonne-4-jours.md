@@ -3,8 +3,9 @@ lang: fr
 pageSlug: lisbonne-4-jours
 title: "Lisbonne en 4 jours"
 description: "Un week-end prolongé à Lisbonne, entre miradouros, tram 28 et pastéis."
-hero: /assets/destinations/lisbonne.jpg
-itineraryImage: /assets/destinations/lisbonne-itineraire.png
+hero: /assets/destinations/lisbonne-desktop.webp
+heroMobile: /assets/destinations/lisbonne-mobile.webp
+itineraryImage: /assets/destinations/lisbonne-itineraire.webp
 order: 30
 published: true
 tips:

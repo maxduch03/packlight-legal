@@ -3,7 +3,7 @@ import { INSTAGRAM_REEL_URL } from '../config';
 
 // Tant que l'URL n'est pas renseignée, on affiche le poster de secours.
 const hasReel = INSTAGRAM_REEL_URL !== 'INSTAGRAM_REEL_URL' && INSTAGRAM_REEL_URL.length > 0;
-const poster = '/assets/reel-poster.jpg';
+const poster = '/assets/reel-poster.webp';
 ---
 <div class="reel">
   {hasReel ? (
@@ -16,7 +16,7 @@ const poster = '/assets/reel-poster.jpg';
     <script is:inline async src="https://www.instagram.com/embed.js"></script>
   ) : (
     <div class="reel-poster">
-      <img src={poster} alt="Aperçu de l'application PackLight en action" />
+      <img src={poster} alt="Aperçu de l'application PackLight en action" width="1080" height="1935" />
       <span class="reel-play" aria-hidden="true">▶</span>
     </div>
   )}

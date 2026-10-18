@@ -3,8 +3,9 @@ lang: fr
 pageSlug: pvt-australie-par-ou-commencer
 title: "PVT Australie : par où commencer"
 description: "Les premières semaines d'un Working Holiday en Australie, sans se perdre."
-hero: /assets/destinations/australie.jpg
-itineraryImage: /assets/destinations/australie-itineraire.png
+hero: /assets/destinations/australie-desktop.webp
+heroMobile: /assets/destinations/australie-mobile.webp
+itineraryImage: /assets/destinations/australie-itineraire.webp
 order: 20
 published: true
 tips:
