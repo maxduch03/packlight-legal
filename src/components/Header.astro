@@ -1,17 +1,33 @@
 ---
 import { STORE_SMART_LINK } from '../config';
-import { getLangFromUrl, useTranslations, localizedPath } from '../i18n/utils';
+import { getLangFromUrl, useTranslations, route } from '../i18n/utils';
+
+interface Props {
+  /** Chemins FR/EN équivalents de la page courante (switch de langue). */
+  alternates?: { fr: string; en: string } | null;
+}
+const { alternates = null } = Astro.props;
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
-const download = `${STORE_SMART_LINK}&utm_campaign=header`;
+const download = `${STORE_SMART_LINK}&utm_campaign=${lang === 'en' ? 'header_en' : 'header'}`;
+
+const other = lang === 'fr' ? 'en' : 'fr';
+const switchHref = alternates ? alternates[other] : route(other, 'home');
+
+const aria = {
+  main: lang === 'en' ? 'Main navigation' : 'Navigation principale',
+  mobile: lang === 'en' ? 'Mobile navigation' : 'Navigation mobile',
+  open: lang === 'en' ? 'Open menu' : 'Ouvrir le menu',
+  close: lang === 'en' ? 'Close menu' : 'Fermer le menu',
+};
 
 const path = Astro.url.pathname.replace(/\/+$/, '') || '/';
 const links = [
-  { href: localizedPath(lang, 'destinations'), label: t('nav.destinations') },
-  { href: localizedPath(lang, 'sur-mesure'), label: t('nav.affinage') },
-  { href: localizedPath(lang, 'a-propos'), label: t('nav.about') },
-  { href: localizedPath(lang, 'partenaires'), label: t('nav.partners') },
+  { href: route(lang, 'destinations'), label: t('nav.destinations') },
+  { href: route(lang, 'tailored'), label: t('nav.affinage') },
+  { href: route(lang, 'about'), label: t('nav.about') },
+  { href: route(lang, 'partners'), label: t('nav.partners') },
 ];
 const isActive = (href: string) => {
   const h = href.replace(/\/+$/, '') || '/';
@@ -20,12 +36,12 @@ const isActive = (href: string) => {
 ---
 <header class="site-header">
   <div class="container bar">
-    <a href={localizedPath(lang)} class="brand">
+    <a href={route(lang, 'home')} class="brand">
       <img src="/assets/logo-64.png" alt="PackLight" width="30" height="30" />
       <span>PackLight</span>
     </a>
 
-    <nav class="nav" aria-label="Navigation principale">
+    <nav class="nav" aria-label={aria.main}>
       {links.map((l) => (
         <a
           href={l.href}
@@ -34,12 +50,18 @@ const isActive = (href: string) => {
         >{l.label}</a>
       ))}
       <a href={download} class="btn btn-primary nav-cta">{t('nav.download')}</a>
+      <span class="lang-switch" aria-label="Language">
+        <span class="lang-current" aria-current="true">{lang.toUpperCase()}</span>
+        <a class="lang-alt" href={switchHref} data-set-lang={other}>{other.toUpperCase()}</a>
+      </span>
     </nav>
 
     <button
       type="button"
       class="nav-toggle"
-      aria-label="Ouvrir le menu"
+      aria-label={aria.open}
+      data-label-open={aria.open}
+      data-label-close={aria.close}
       aria-expanded="false"
       aria-controls="mobile-nav"
     >
@@ -49,7 +71,7 @@ const isActive = (href: string) => {
 </header>
 
 <div class="mobile-nav" id="mobile-nav" hidden>
-  <nav aria-label="Navigation mobile">
+  <nav aria-label={aria.mobile}>
     {links.map((l) => (
       <a
         href={l.href}
@@ -58,6 +80,10 @@ const isActive = (href: string) => {
       >{l.label}</a>
     ))}
     <a href={download} class="btn btn-primary mobile-cta">{t('nav.download')}</a>
+    <span class="lang-switch mobile-lang" aria-label="Language">
+      <span class="lang-current" aria-current="true">{lang.toUpperCase()}</span>
+      <a class="lang-alt" href={switchHref} data-set-lang={other}>{other.toUpperCase()}</a>
+    </span>
   </nav>
 </div>
 
@@ -65,11 +91,27 @@ const isActive = (href: string) => {
   (function () {
     var toggle = document.querySelector('.nav-toggle');
     var panel = document.getElementById('mobile-nav');
+
+    // Store an explicit language choice (switch click) so the root page
+    // respects it on the next visit.
+    function persist(l) {
+      try { localStorage.setItem('pl-lang', l); } catch (e) {}
+      document.cookie = 'pl-lang=' + l + ';path=/;max-age=31536000;samesite=lax';
+    }
+    document.querySelectorAll('.lang-alt').forEach(function (a) {
+      a.addEventListener('click', function () {
+        var l = a.getAttribute('data-set-lang');
+        if (l) persist(l);
+      });
+    });
+
     if (!toggle || !panel) return;
 
     function setOpen(open) {
       toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
-      toggle.setAttribute('aria-label', open ? 'Fermer le menu' : 'Ouvrir le menu');
+      toggle.setAttribute('aria-label', open
+        ? toggle.getAttribute('data-label-close')
+        : toggle.getAttribute('data-label-open'));
       toggle.classList.toggle('is-open', open);
       document.body.classList.toggle('nav-locked', open);
       if (open) {

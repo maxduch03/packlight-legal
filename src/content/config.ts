@@ -17,6 +17,8 @@ const destinations = defineCollection({
     itineraryImage: z.string().optional(),
     // Exactement 3 conseils.
     tips: z.array(z.string()).length(3),
+    // pageSlug de la page équivalente dans l'autre langue (hreflang + switch).
+    translationOf: z.string().optional(),
     order: z.number().default(100),
     published: z.boolean().default(true),
   }),

@@ -1,13 +1,21 @@
 ---
 import { INSTAGRAM_REEL_URL } from '../config';
+import { getLangFromUrl } from '../i18n/utils';
 
 // Tant que l'URL n'est pas renseignée, on garde le poster non cliquable.
 const hasReel = INSTAGRAM_REEL_URL !== 'INSTAGRAM_REEL_URL' && INSTAGRAM_REEL_URL.length > 0;
 const poster = '/assets/reel-poster.webp';
+const lang = getLangFromUrl(Astro.url);
+const playLabel = lang === 'en'
+  ? 'Play the PackLight intro video on Instagram'
+  : 'Lire la vidéo de présentation PackLight sur Instagram';
+const posterAlt = lang === 'en'
+  ? 'Preview of the PackLight app in action'
+  : "Aperçu de l'application PackLight en action";
 ---
 <div class="reel" data-reel-url={hasReel ? INSTAGRAM_REEL_URL : undefined}>
-  <button type="button" class="reel-poster" aria-label="Lire la vidéo de présentation PackLight sur Instagram">
-    <img src={poster} alt="Aperçu de l'application PackLight en action" width="1080" height="1935" loading="lazy" />
+  <button type="button" class="reel-poster" aria-label={playLabel}>
+    <img src={poster} alt={posterAlt} width="1080" height="1935" loading="lazy" />
     <span class="reel-play" aria-hidden="true">▶</span>
   </button>
 </div>
@@ -22,7 +30,7 @@ const poster = '/assets/reel-poster.webp';
       if (!btn || !url) return;
 
       btn.addEventListener('click', function () {
-        // Remplace le poster par l'embed officiel Instagram.
+        // Replace the poster with the official Instagram embed.
         var block = document.createElement('blockquote');
         block.className = 'instagram-media';
         block.setAttribute('data-instgrm-permalink', url);
@@ -50,7 +58,7 @@ const poster = '/assets/reel-poster.webp';
         script.onerror = fallback;
         document.body.appendChild(script);
 
-        // Si l'embed est bloqué (adblock, RGPD, réseau), ouvre dans un onglet.
+        // If the embed is blocked (adblock, privacy, network), open in a tab.
         setTimeout(fallback, 4000);
       }, { once: true });
     })();

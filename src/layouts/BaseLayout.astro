@@ -2,8 +2,8 @@
 import '../styles/global.css';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-import { SITE_NAME, SITE_TAGLINE } from '../config';
-import { getLangFromUrl, useTranslations } from '../i18n/utils';
+import { SITE_NAME } from '../config';
+import { getLangFromUrl, useTranslations, alternatesFor } from '../i18n/utils';
 
 interface Props {
   title?: string;
@@ -12,6 +12,8 @@ interface Props {
   ogImage?: string;
   /** noindex pour pages techniques. */
   noindex?: boolean;
+  /** Chemins FR/EN équivalents (hreflang + switch). null = pas d'équivalent. */
+  alternates?: { fr: string; en: string } | null;
 }
 
 const lang = getLangFromUrl(Astro.url);
@@ -22,12 +24,15 @@ const {
   description = t('footer.tagline'),
   ogImage = '/assets/og-default.jpg',
   noindex = false,
+  alternates = alternatesFor(Astro.url),
 } = Astro.props;
 
-const pageTitle = title ? `${title} — ${SITE_NAME}` : `${SITE_NAME} — ${SITE_TAGLINE}`;
+const tagline = t('footer.tagline');
+const pageTitle = title ? `${title} — ${SITE_NAME}` : `${SITE_NAME} — ${tagline}`;
 const canonical = new URL(Astro.url.pathname, Astro.site).href;
 const ogImageUrl = new URL(ogImage, Astro.site).href;
 const ogLocale = lang === 'en' ? 'en_US' : 'fr_FR';
+const abs = (p: string) => new URL(p, Astro.site).href;
 ---
 <!DOCTYPE html>
 <html lang={lang}>
@@ -38,6 +43,14 @@ const ogLocale = lang === 'en' ? 'en_US' : 'fr_FR';
   <meta name="description" content={description} />
   <link rel="canonical" href={canonical} />
   {noindex && <meta name="robots" content="noindex, follow" />}
+
+  {alternates && (
+    <>
+      <link rel="alternate" hreflang="fr" href={abs(alternates.fr)} />
+      <link rel="alternate" hreflang="en" href={abs(alternates.en)} />
+      <link rel="alternate" hreflang="x-default" href={abs(alternates.fr)} />
+    </>
+  )}
 
   <!-- Open Graph / Twitter -->
   <meta property="og:type" content="website" />
@@ -61,7 +74,7 @@ const ogLocale = lang === 'en' ? 'en_US' : 'fr_FR';
     href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap"
   />
 
-  <!-- Travelpayouts (vérification Drive) -->
+  <!-- Travelpayouts (Drive verification) -->
   <script is:inline nowprocket data-noptimize="1" data-cfasync="false" data-wpfc-render="false" seraph-accel-crit="1" data-no-defer="1" data-cmp-ab="2">
     (function () {
       var script = document.createElement("script");
@@ -73,7 +86,7 @@ const ogLocale = lang === 'en' ? 'en_US' : 'fr_FR';
   </script>
 </head>
 <body>
-  <Header />
+  <Header alternates={alternates} />
   <main>
     <slot />
   </main>

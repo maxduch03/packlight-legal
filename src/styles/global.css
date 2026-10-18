@@ -144,6 +144,17 @@ label { font-size: 0.9rem; font-weight: 600; color: var(--ink); }
 }
 .nav-cta { font-weight: 600; }
 
+/* Switch de langue FR | EN */
+.lang-switch {
+  display: inline-flex; align-items: center; gap: 0.1rem;
+  font-size: 0.85rem; font-weight: 700; letter-spacing: 0.3px;
+}
+.lang-switch .lang-current { color: var(--ink); }
+.lang-switch .lang-alt { color: var(--ink-muted); }
+.lang-switch .lang-alt::before { content: "/"; color: var(--sand-line); margin: 0 0.35rem; font-weight: 400; }
+.lang-switch .lang-alt:hover { color: var(--teal); }
+.mobile-lang { margin-top: 1rem; font-size: 1.1rem; }
+
 /* Burger (mobile) */
 .nav-toggle {
   display: inline-flex; flex-direction: column; justify-content: center; gap: 5px;

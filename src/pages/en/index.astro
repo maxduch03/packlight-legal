@@ -1,7 +1,199 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import ComingSoon from '../../components/ComingSoon.astro';
+import StoreButtons from '../../components/StoreButtons.astro';
+import ReelEmbed from '../../components/ReelEmbed.astro';
+import FeatureBlock from '../../components/FeatureBlock.astro';
 ---
-<BaseLayout noindex={true}>
-  <ComingSoon frPath="/fr/" />
+<BaseLayout>
+  <!-- HERO -->
+  <section class="hero">
+    <picture class="hero-bg">
+      <source media="(max-width: 767px)" srcset="/assets/hero-mobile.webp" />
+      <img src="/assets/hero-desktop.webp" alt="Traveller with open arms facing the Komodo islands, Indonesia" width="1600" height="900" fetchpriority="high" />
+    </picture>
+    <div class="hero-overlay"></div>
+    <div class="container hero-grid">
+      <div class="hero-copy">
+        <h1>Leaving should be as simple as wanting to.</h1>
+        <p class="lead">
+          Your trip in 30 seconds, bookable in one flow. PackLight turns a travel
+          urge into a complete, day-by-day itinerary — with your packing list ready.
+        </p>
+        <StoreButtons medium="hero" />
+        <p class="hero-micro">Free · iOS &amp; Android</p>
+      </div>
+      <div class="hero-visual">
+        <ReelEmbed />
+      </div>
+    </div>
+  </section>
+
+  <!-- 3 BLOCKS -->
+  <section class="section features-section">
+    <div class="container">
+      <div class="features-grid">
+        <FeatureBlock icon="⚡" title="Itinerary in 30s">
+          Tell us where, when and your style. PackLight generates a day-by-day
+          itinerary, made for you, in under a minute.
+        </FeatureBlock>
+        <FeatureBlock icon="🧭" title="All bookable">
+          Flights, stays, activities: every step links to a bookable option.
+          From inspiration to departure, without leaving the app.
+        </FeatureBlock>
+        <FeatureBlock icon="✅" title="Packing list">
+          A packing list tailored to your destination, your dates and the weather.
+          You tick, you go, light-headed.
+        </FeatureBlock>
+      </div>
+    </div>
+  </section>
+
+  <!-- GENERATED EXAMPLES -->
+  <section class="section examples-section">
+    <div class="container">
+      <h2 class="examples-title">Generated examples</h2>
+      <p class="examples-sub">Real itineraries, created in seconds inside the app.</p>
+      <div class="examples-row">
+        <figure class="example">
+          <img src="/assets/destinations/bali-itineraire.webp" alt="PackLight itinerary generated for Bali" width="760" height="1600" loading="lazy" />
+          <figcaption>Bali</figcaption>
+        </figure>
+        <figure class="example">
+          <img src="/assets/destinations/thailande-itineraire.webp" alt="PackLight itinerary generated for Thailand" width="760" height="1600" loading="lazy" />
+          <figcaption>Thailand</figcaption>
+        </figure>
+        <figure class="example">
+          <img src="/assets/destinations/new-york-itineraire.webp" alt="PackLight itinerary generated for New York" width="760" height="1600" loading="lazy" />
+          <figcaption>New York</figcaption>
+        </figure>
+        <figure class="example">
+          <img src="/assets/destinations/lisbonne-itineraire.webp" alt="PackLight itinerary generated for Lisbon" width="760" height="1600" loading="lazy" />
+          <figcaption>Lisbon</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- TAILORED CARD -->
+  <section class="section">
+    <div class="container">
+      <div class="affinage-card">
+        <div class="affinage-copy">
+          <span class="affinage-badge">Tailored</span>
+          <h2>Your PackLight itinerary, tailored by Maxime</h2>
+          <p>
+            Want to go further? We start from the itinerary generated in the app and
+            Maxime fine-tunes it by hand: pacing reviewed, timing optimised, on-the-ground
+            tips and answers to your questions.
+          </p>
+          <a href="/en/tailored" class="btn btn-ghost">Discover Tailored — €69</a>
+        </div>
+      </div>
+    </div>
+  </section>
 </BaseLayout>
+
+<style>
+  .hero {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    padding: 2.5rem 0 3rem;
+  }
+  .hero-bg { position: absolute; inset: 0; z-index: -2; }
+  .hero-bg img { width: 100%; height: 100%; object-fit: cover; object-position: center 40%; }
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: linear-gradient(180deg, rgba(8, 28, 26, 0.7) 0%, rgba(8, 28, 26, 0.55) 100%);
+  }
+  .hero-grid { display: grid; gap: 2.5rem; align-items: center; }
+  .hero-copy { color: #fff; }
+  .hero-copy h1 { color: #fff; }
+  .hero-copy .lead {
+    font-size: 1.15rem;
+    margin: 1.25rem 0 1.75rem;
+    max-width: 42ch;
+    color: rgba(255, 255, 255, 0.92);
+  }
+  .hero-micro {
+    margin-top: 1rem;
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.82);
+  }
+
+  .features-grid { display: grid; gap: 1.25rem; }
+
+  .examples-title { text-align: center; }
+  .examples-sub {
+    text-align: center;
+    color: var(--ink-muted);
+    margin: 0.5rem 0 1.75rem;
+  }
+  .examples-row {
+    display: flex;
+    gap: 1rem;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 0.5rem;
+  }
+  .example {
+    flex: 0 0 68%;
+    max-width: 260px;
+    margin: 0;
+    scroll-snap-align: center;
+  }
+  .example img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-lg);
+  }
+  .example figcaption {
+    text-align: center;
+    margin-top: 0.6rem;
+    font-weight: 600;
+  }
+
+  .affinage-card {
+    background: linear-gradient(135deg, var(--sand-2), var(--amber-soft));
+    border: 1px solid var(--sand-line);
+    border-radius: var(--radius);
+    padding: 2.5rem 1.75rem;
+  }
+  .affinage-copy { max-width: 48ch; }
+  .affinage-badge {
+    display: inline-block;
+    background: var(--amber);
+    color: #fff;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    padding: 0.3rem 0.7rem;
+    border-radius: 999px;
+    margin-bottom: 1rem;
+  }
+  .affinage-copy h2 { margin-bottom: 0.75rem; }
+  .affinage-copy p { margin-bottom: 1.5rem; }
+
+  @media (min-width: 820px) {
+    .hero { padding: 5rem 0 4rem; }
+    .hero-bg img { object-position: center center; }
+    .hero-grid { grid-template-columns: 1.1fr 0.9fr; gap: 3.5rem; }
+    .hero-overlay {
+      background: linear-gradient(90deg, rgba(8, 28, 26, 0.78) 0%, rgba(8, 28, 26, 0.5) 42%, rgba(8, 28, 26, 0.1) 72%);
+    }
+    .features-grid { grid-template-columns: repeat(3, 1fr); }
+    .affinage-card { padding: 3rem; }
+    .examples-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      overflow: visible;
+    }
+    .example { flex: none; max-width: none; }
+  }
+</style>

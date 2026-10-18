@@ -2,7 +2,11 @@
   "redirects": [
     { "source": "/fr/affinage/merci", "destination": "/fr/sur-mesure/merci", "statusCode": 301 },
     { "source": "/fr/affinage", "destination": "/fr/sur-mesure", "statusCode": 301 },
-    { "source": "/en/affinage", "destination": "/en/sur-mesure", "statusCode": 301 }
+    { "source": "/en/affinage", "destination": "/en/tailored", "statusCode": 301 },
+    { "source": "/en/sur-mesure/merci", "destination": "/en/tailored/thanks", "statusCode": 301 },
+    { "source": "/en/sur-mesure", "destination": "/en/tailored", "statusCode": 301 },
+    { "source": "/en/a-propos", "destination": "/en/about", "statusCode": 301 },
+    { "source": "/en/partenaires", "destination": "/en/partners", "statusCode": 301 }
   ],
   "rewrites": [
     { "source": "/privacy", "destination": "/privacy.html" },

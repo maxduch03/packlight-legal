@@ -1,0 +1,69 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import StoreButtons from '../../components/StoreButtons.astro';
+---
+<BaseLayout
+  title="About"
+  description="The story behind PackLight: making trip planning as light as the urge to leave."
+>
+  <section class="section">
+    <div class="container prose">
+      <h1>About</h1>
+
+      <p>
+        PackLight was born from a simple observation: planning a trip should be the
+        exciting part, not the chore. Between dozens of open tabs, contradictory blogs
+        and hours spent comparing, the urge to leave often burns out before departure.
+      </p>
+      <p>
+        The app turns an urge — a destination, some dates, a style — into a complete,
+        day-by-day itinerary, with the links to book flights, stays and transfers, and
+        the packing list that goes with it. In 30 seconds.
+      </p>
+
+      <h2>Who's behind it</h2>
+      <img
+        class="about-portrait"
+        src="/assets/maxime.webp"
+        alt="Portrait of Maxime Ducher, founder of PackLight"
+        width="1200"
+        height="1200"
+        loading="lazy"
+      />
+      <p>
+        PackLight is built by Maxime Ducher, a journalist for five years in Paris
+        newsrooms, then a year in Australia on a working holiday visa. The app grew out
+        of his own trips: Indonesia, Australia, Europe. A solo, human-scale project with
+        one obsession: that every feature actually serves the departure.
+      </p>
+
+      <h2>Our promise</h2>
+      <p>
+        Leaving should be as simple as wanting to. That's the only compass behind every
+        product decision.
+      </p>
+
+      <div style="margin-top: 2rem;">
+        <StoreButtons medium="about" />
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .about-portrait {
+    display: block;
+    width: 220px;
+    max-width: 60%;
+    height: auto;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    margin: 0.5rem 0 1.5rem;
+  }
+  @media (min-width: 640px) {
+    .about-portrait {
+      float: right;
+      margin: 0 0 1rem 1.5rem;
+    }
+  }
+</style>

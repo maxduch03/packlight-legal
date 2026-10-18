@@ -10,12 +10,12 @@ export default defineConfig({
   trailingSlash: 'never',
   integrations: [
     sitemap({
-      // Exclut l'EN (non rempli, en noindex), la racine de redirection et la page de remerciement.
+      // Exclut la racine de redirection et les pages de remerciement (noindex).
       filter: (page) => {
         const { pathname } = new URL(page);
-        if (pathname === '/en' || pathname.startsWith('/en/')) return false;
         if (pathname === '/') return false;
         if (pathname.includes('/sur-mesure/merci')) return false;
+        if (pathname.includes('/tailored/thanks')) return false;
         return true;
       },
     }),

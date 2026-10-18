@@ -1,6 +1,6 @@
 ---
 import { CONTACT_EMAIL } from '../config';
-import { getLangFromUrl, useTranslations, localizedPath } from '../i18n/utils';
+import { getLangFromUrl, useTranslations, route } from '../i18n/utils';
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
@@ -18,10 +18,10 @@ const year = new Date().getFullYear();
     <div>
       <strong style="color:#fff; display:block; margin-bottom:0.6rem;">{t('footer.explore')}</strong>
       <nav style="flex-direction: column; gap: 0.55rem;">
-        <a href={localizedPath(lang, 'destinations')}>{t('nav.destinations')}</a>
-        <a href={localizedPath(lang, 'sur-mesure')}>{t('nav.affinage')}</a>
-        <a href={localizedPath(lang, 'a-propos')}>{t('nav.about')}</a>
-        <a href={localizedPath(lang, 'partenaires')}>{t('nav.partners')}</a>
+        <a href={route(lang, 'destinations')}>{t('nav.destinations')}</a>
+        <a href={route(lang, 'tailored')}>{t('nav.affinage')}</a>
+        <a href={route(lang, 'about')}>{t('nav.about')}</a>
+        <a href={route(lang, 'partners')}>{t('nav.partners')}</a>
       </nav>
     </div>
     <div>

@@ -6,6 +6,7 @@ description: "Road trip côte est généré par PackLight puis corrigé sur la r
 hero: /assets/destinations/australie-desktop.webp
 heroMobile: /assets/destinations/australie-mobile.webp
 itineraryImage: /assets/destinations/australie-itineraire.webp
+translationOf: east-coast-road-trip
 order: 20
 published: true
 tips:

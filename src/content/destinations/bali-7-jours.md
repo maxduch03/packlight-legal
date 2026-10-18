@@ -6,6 +6,7 @@ description: "Itinéraire Bali 7 jours généré par PackLight, puis corrigé su
 hero: /assets/destinations/bali-desktop.webp
 heroMobile: /assets/destinations/bali-mobile.webp
 itineraryImage: /assets/destinations/bali-itineraire.webp
+translationOf: bali-7-days
 order: 10
 published: true
 tips:

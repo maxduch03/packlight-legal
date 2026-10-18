@@ -35,7 +35,7 @@ export const ui = {
   },
   en: {
     'nav.destinations': 'Destinations',
-    'nav.affinage': 'Made-to-measure',
+    'nav.affinage': 'Tailored',
     'nav.about': 'About',
     'nav.partners': 'Partners',
     'nav.download': 'Download the app',
@@ -46,13 +46,13 @@ export const ui = {
     'footer.terms': 'Terms',
     'footer.legalNotice': 'Legal notice',
     'footer.contact': 'Contact',
-    'footer.tagline': 'Travelling should be as easy as wanting to.',
+    'footer.tagline': 'Leaving should be as simple as wanting to.',
     'footer.rights': 'All rights reserved.',
 
     'store.appstore': 'App Store',
     'store.googleplay': 'Google Play',
 
-    'cta.generate': 'Create yours',
+    'cta.generate': 'Generate yours in PackLight',
     'comingsoon.title': 'Coming soon in English',
     'comingsoon.body': 'This page is not available in English yet.',
     'comingsoon.toFr': 'See the French version →',

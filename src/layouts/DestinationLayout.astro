@@ -12,8 +12,22 @@ const d = entry.data;
 const { Content } = await entry.render();
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
+
+// Alternate FR/EN via translationOf (hreflang + switch de langue).
+const other = lang === 'fr' ? 'en' : 'fr';
+const alternates = d.translationOf
+  ? ({
+      [lang]: `/${lang}/destinations/${d.pageSlug}`,
+      [other]: `/${other}/destinations/${d.translationOf}`,
+    } as { fr: string; en: string })
+  : null;
+
+const heroAlt = lang === 'en' ? `${d.title} — landscape` : `${d.title} — paysage`;
+const captureAlt = lang === 'en'
+  ? `Screenshot of the PackLight itinerary generated for ${d.title}`
+  : `Capture de l'itinéraire PackLight généré pour ${d.title}`;
 ---
-<BaseLayout title={d.title} description={d.description} ogImage={d.hero ?? '/assets/og-default.jpg'}>
+<BaseLayout title={d.title} description={d.description} ogImage={d.hero ?? '/assets/og-default.jpg'} alternates={alternates}>
   <article class="dest">
     <!-- EN-TÊTE / CONTEXTE -->
     <header class="dest-hero">
@@ -25,7 +39,7 @@ const t = useTranslations(lang);
         <div class="container">
           <picture>
             {d.heroMobile && <source media="(max-width: 767px)" srcset={d.heroMobile} />}
-            <img class="dest-hero-img" src={d.hero} alt={`${d.title} — paysage`} width="1600" height="900" />
+            <img class="dest-hero-img" src={d.hero} alt={heroAlt} width="1600" height="900" />
           </picture>
         </div>
       )}
@@ -42,7 +56,7 @@ const t = useTranslations(lang);
     {d.itineraryImage && (
       <section class="section dest-capture-section">
         <div class="container dest-capture">
-          <img src={d.itineraryImage} alt={`Capture de l'itinéraire PackLight généré pour ${d.title}`} width="760" height="1600" loading="lazy" />
+          <img src={d.itineraryImage} alt={captureAlt} width="760" height="1600" loading="lazy" />
         </div>
       </section>
     )}

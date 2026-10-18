@@ -9,7 +9,8 @@ interface Props {
 const { medium } = Astro.props;
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
-const href = medium ? `${STORE_SMART_LINK}&utm_medium=${medium}` : STORE_SMART_LINK;
+const campaign = lang === 'en' ? '&utm_campaign=site_en' : '';
+const href = `${STORE_SMART_LINK}${campaign}${medium ? `&utm_medium=${medium}` : ''}`;
 ---
 <div class="store-buttons">
   <a href={href} class="btn btn-primary">

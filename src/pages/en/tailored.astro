@@ -1,0 +1,189 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import StoreButtons from '../../components/StoreButtons.astro';
+import { STRIPE_PAYMENT_LINK } from '../../config';
+
+const payHref = `${STRIPE_PAYMENT_LINK}?utm_source=site&utm_campaign=tailored_en`;
+---
+<BaseLayout
+  title="Tailored"
+  description="Your PackLight itinerary, tailored by Maxime. €69 (≈ A$115), reply within 48 h."
+>
+  <!-- PROMISE -->
+  <section class="section affinage-hero">
+    <div class="container">
+      <span class="badge">Tailored</span>
+      <h1>Your PackLight itinerary, tailored by Maxime.</h1>
+      <p class="lead">
+        The app gives you a solid base in 30 seconds. Tailored is a human eye on top:
+        we start from the itinerary you generated in the app, fine-tune it, and answer
+        your questions — so you leave genuinely at ease.
+      </p>
+      <a href={payHref} class="btn btn-amber btn-lg">Start my Tailored — €69</a>
+      <p class="price-note">€69 (≈ A$115) — VAT not applicable, art. 293 B of the French CGI</p>
+      <img
+        class="sur-mesure-shot"
+        src="/assets/destinations/bali-itineraire.webp"
+        alt="Example of a tailored PackLight itinerary shown in the app"
+        width="760"
+        height="1600"
+        loading="lazy"
+      />
+    </div>
+  </section>
+
+  <!-- WHO IT'S FOR -->
+  <section class="section">
+    <div class="container">
+      <h2>Who it's for</h2>
+      <div class="cards-3">
+        <div class="card">
+          <h3>Working holiday</h3>
+          <p>You're heading off on a working holiday and want your first weeks on the ground locked in.</p>
+        </div>
+        <div class="card">
+          <h3>First big trip</h3>
+          <p>It's your first long trip and you want to avoid the classic mistakes.</p>
+        </div>
+        <div class="card">
+          <h3>Multi-city route</h3>
+          <p>Your trip strings together several stops and you want a route that holds up.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHAT YOU GET -->
+  <section class="section section-sand">
+    <div class="container">
+      <h2>What you get</h2>
+      <ul class="includes">
+        <li>Your itinerary tuned: pacing, sequencing and timing reviewed.</li>
+        <li>3 concrete on-the-ground tips, specific to your destination.</li>
+        <li>Answers to your questions about the trip.</li>
+        <li>All by email, with a reply within 48 h.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="section">
+    <div class="container">
+      <h2>How it works</h2>
+      <ol class="steps">
+        <li>
+          <span class="step-num">1</span>
+          <div><strong>Generate your trip</strong><p>Create your itinerary in the PackLight app.</p></div>
+        </li>
+        <li>
+          <span class="step-num">2</span>
+          <div><strong>Pay €69</strong><p>Pay online and paste your email or the share link of your itinerary.</p></div>
+        </li>
+        <li>
+          <span class="step-num">3</span>
+          <div><strong>Get the tuned version</strong><p>You receive your tailored itinerary by email, within 48 h.</p></div>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- PRICE / CTA -->
+  <section class="section">
+    <div class="container prix-cta">
+      <div class="price-amount">€69</div>
+      <p class="price-note">€69 (≈ A$115) — VAT not applicable, art. 293 B of the French CGI</p>
+      <a href={payHref} class="btn btn-amber btn-lg">Start my Tailored</a>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section section-sand">
+    <div class="container">
+      <h2>Frequently asked questions</h2>
+      <div class="faq">
+        <div class="faq-item">
+          <h3>How soon do I get my itinerary?</h3>
+          <p>Within 48 h of receiving your payment and your itinerary.</p>
+        </div>
+        <div class="faq-item">
+          <h3>What if you can't take my request?</h3>
+          <p>If I can't take your request on, you're fully refunded within 24 h.</p>
+        </div>
+        <div class="faq-item">
+          <h3>Are bookings included?</h3>
+          <p>No: Tailored covers the itinerary and the advice. No booking is on me.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NO APP YET -->
+  <section class="section">
+    <div class="container app-cta">
+      <h2>No app yet?</h2>
+      <p>Start by generating your itinerary for free in PackLight.</p>
+      <StoreButtons medium="tailored" />
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .affinage-hero { padding-bottom: 1rem; }
+  .sur-mesure-shot {
+    display: block;
+    width: 240px; max-width: 72%; height: auto;
+    border-radius: var(--radius); box-shadow: var(--shadow-lg);
+    margin: 1.75rem auto 0.5rem;
+  }
+  .badge {
+    display: inline-block; background: var(--amber); color: #fff;
+    font-size: 0.75rem; font-weight: 700; letter-spacing: 0.5px;
+    text-transform: uppercase; padding: 0.3rem 0.7rem;
+    border-radius: 999px; margin-bottom: 1rem;
+  }
+  .lead { font-size: 1.15rem; max-width: 54ch; margin: 1rem 0 1.75rem; }
+  .btn-lg { font-size: 1.05rem; padding: 1rem 1.75rem; }
+  .price-note { color: var(--ink-muted); font-size: 0.9rem; margin-top: 0.75rem; }
+
+  .section-sand { background: var(--sand-2); }
+
+  .cards-3 { display: grid; gap: 1.25rem; margin-top: 1.5rem; }
+  .card {
+    background: var(--surface); border: 1px solid var(--sand-line);
+    border-radius: var(--radius); padding: 1.5rem; box-shadow: var(--shadow);
+  }
+  .card h3 { margin-bottom: 0.5rem; }
+  .card p { margin: 0; font-size: 0.95rem; }
+
+  .includes { list-style: none; margin: 1.5rem 0 0; display: grid; gap: 0.75rem; }
+  .includes li { padding-left: 1.75rem; position: relative; color: var(--ink-soft); }
+  .includes li::before { content: "✓"; position: absolute; left: 0; color: var(--teal); font-weight: 700; }
+
+  .steps { list-style: none; margin: 1.5rem 0 0; display: grid; gap: 1.25rem; }
+  .steps li { display: flex; gap: 1rem; align-items: flex-start; }
+  .steps p { margin: 0.2rem 0 0; font-size: 0.95rem; }
+  .step-num {
+    flex: 0 0 auto; width: 36px; height: 36px;
+    display: flex; align-items: center; justify-content: center;
+    background: var(--teal); color: #fff; border-radius: 50%;
+    font-weight: 700; font-family: var(--font-display);
+  }
+
+  .prix-cta { text-align: center; }
+  .price-amount { font-family: var(--font-display); font-size: 3.2rem; font-weight: 700; color: var(--teal); }
+  .prix-cta .price-note { margin-bottom: 1.25rem; }
+
+  .faq { display: grid; gap: 1.25rem; margin-top: 1.5rem; }
+  .faq-item h3 { margin-bottom: 0.3rem; font-size: 1.05rem; }
+  .faq-item p { margin: 0; }
+
+  .app-cta { text-align: center; }
+  .app-cta p { margin: 0.5rem 0 1.25rem; }
+  .app-cta .store-buttons { justify-content: center; }
+
+  @media (min-width: 720px) {
+    .cards-3 { grid-template-columns: repeat(3, 1fr); }
+    .includes { grid-template-columns: 1fr 1fr; }
+    .faq { grid-template-columns: 1fr 1fr; }
+  }
+</style>
