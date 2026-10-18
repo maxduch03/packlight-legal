@@ -1,8 +1,8 @@
 {
   "redirects": [
-    { "source": "/fr/affinage/merci", "destination": "/fr/sur-mesure/merci", "permanent": true },
-    { "source": "/fr/affinage", "destination": "/fr/sur-mesure", "permanent": true },
-    { "source": "/en/affinage", "destination": "/en/sur-mesure", "permanent": true }
+    { "source": "/fr/affinage/merci", "destination": "/fr/sur-mesure/merci", "statusCode": 301 },
+    { "source": "/fr/affinage", "destination": "/fr/sur-mesure", "statusCode": 301 },
+    { "source": "/en/affinage", "destination": "/en/sur-mesure", "statusCode": 301 }
   ],
   "rewrites": [
     { "source": "/privacy", "destination": "/privacy.html" },
