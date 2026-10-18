@@ -3,6 +3,10 @@ site-assets/
 _preview.jpg
 # build output
 dist/
+# playwright
+test-results/
+playwright-report/
+.playwright/
 # generated types
 .astro/
 # dependencies

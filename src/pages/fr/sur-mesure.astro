@@ -21,6 +21,14 @@ const payHref = `${STRIPE_PAYMENT_LINK}?utm_source=site&utm_campaign=sur-mesure`
       </p>
       <a href={payHref} class="btn btn-amber btn-lg">Lancer mon Sur-mesure — 69&nbsp;€</a>
       <p class="price-note">69 € TTC — TVA non applicable, art. 293 B du CGI</p>
+      <img
+        class="sur-mesure-shot"
+        src="/assets/destinations/bali-itineraire.webp"
+        alt="Exemple d'itinéraire PackLight ajusté, affiché dans l'application"
+        width="760"
+        height="1600"
+        loading="lazy"
+      />
     </div>
   </section>
 
@@ -121,6 +129,12 @@ const payHref = `${STRIPE_PAYMENT_LINK}?utm_source=site&utm_campaign=sur-mesure`
 
 <style>
   .affinage-hero { padding-bottom: 1rem; }
+  .sur-mesure-shot {
+    display: block;
+    width: 240px; max-width: 72%; height: auto;
+    border-radius: var(--radius); box-shadow: var(--shadow-lg);
+    margin: 1.75rem auto 0.5rem;
+  }
   .badge {
     display: inline-block; background: var(--amber); color: #fff;
     font-size: 0.75rem; font-weight: 700; letter-spacing: 0.5px;

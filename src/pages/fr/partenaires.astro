@@ -1,46 +1,186 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { CONTACT_EMAIL } from '../../config';
+
+const stats = [
+  { big: '1 sur 2', line: 'utilisateur clique vers un partenaire depuis son itinéraire.' },
+  { big: '< 2 semaines', line: "d'intégration — lien d'affiliation ou API." },
+  { big: 'Par pays', line: 'activable marché par marché, selon vos zones.' },
+];
+
+const collaborations = [
+  {
+    title: 'Plateformes de réservation & activités',
+    line: 'Vols, hébergements, campings, transports et expériences intégrés à l\'itinéraire.',
+    icon: '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9h18M3 9l2-4h14l2 4M5 9v9a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V9M9 13h6"/></svg>',
+  },
+  {
+    title: 'Offices de tourisme & destinations',
+    line: 'Mettre en avant une région au bon moment du parcours voyage.',
+    icon: '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-6-5.2-6-10a6 6 0 0 1 12 0c0 4.8-6 10-6 10z"/><circle cx="12" cy="11" r="2.2"/></svg>',
+  },
+  {
+    title: 'Créateurs & médias voyage',
+    line: 'Contenus, codes et partenariats d\'affiliation.',
+    icon: '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11v2a1 1 0 0 0 1 1h3l4 4V6L7 10H4a1 1 0 0 0-1 1z"/><path d="M16 9a4 4 0 0 1 0 6"/></svg>',
+  },
+];
+
+const integres = [
+  '12Go', 'Campings.com', 'Kiwi', 'Expedia', 'Hotels.com',
+  'Airalo', 'Localrent', 'GetYourGuide', 'Viator',
+];
 ---
 <BaseLayout
   title="Partenaires"
   description="Travaillons ensemble : offices de tourisme, créateurs, plateformes de réservation."
 >
-  <section class="section">
-    <div class="container prose">
+  <!-- INTRO -->
+  <section class="section intro">
+    <div class="container">
       <h1>Partenaires</h1>
-
-      <p>
-        PackLight touche les voyageurs au moment précis où ils décident de partir :
-        destination, dates, durée et style sont connus avant même la première
-        réservation. C'est l'intention la plus forte du parcours voyage.
+      <p class="lede">
+        PackLight touche les voyageurs au moment précis où ils décident de partir —
+        destination, dates et style connus avant la première réservation.
       </p>
+      <div class="stat-tiles">
+        {stats.map((s) => (
+          <div class="tile">
+            <span class="tile-big">{s.big}</span>
+            <span class="tile-line">{s.line}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
 
-      <h2>Ce que nous apportons</h2>
-      <ul>
-        <li><strong>Une audience qualifiée</strong> — près d'un utilisateur sur deux clique vers un partenaire depuis son itinéraire.</li>
-        <li><strong>Un placement contextuel</strong> — votre offre apparaît sur le jour et la ville concernés, pas dans une bannière.</li>
-        <li><strong>Une intégration rapide</strong> — lien d'affiliation ou API, en place en moins de deux semaines, activable par pays.</li>
-      </ul>
-
+  <!-- COLLABORATIONS -->
+  <section class="section section-sand">
+    <div class="container">
       <h2>Avec qui nous collaborons</h2>
-      <ul>
-        <li><strong>Plateformes de réservation et d'activités</strong> — vols, hébergements, campings, transports, expériences intégrés à l'itinéraire.</li>
-        <li><strong>Offices de tourisme et destinations</strong> — mettre en avant une région au bon moment du parcours.</li>
-        <li><strong>Créateurs et médias voyage</strong> — contenus, codes et partenariats d'affiliation.</li>
-      </ul>
+      <div class="collab-cards">
+        {collaborations.map((c) => (
+          <div class="collab">
+            <span class="collab-icon" aria-hidden="true" set:html={c.icon}></span>
+            <h3>{c.title}</h3>
+            <p>{c.line}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
 
+  <!-- DEJA INTEGRES -->
+  <section class="section">
+    <div class="container">
+      <h2>Déjà intégrés</h2>
+      <p class="muted">Des partenaires déjà branchés à l'itinéraire.</p>
+      <div class="logo-strip" role="list">
+        {integres.map((name) => (
+          <span class="logo-chip" role="listitem">{name}</span>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-band">
+    <div class="container">
       <h2>Travaillons ensemble</h2>
-      <p>
-        Une idée, une proposition&nbsp;? Écrivez à
-        <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a> — réponse sous 48&nbsp;h.
-      </p>
-
-      <p>
-        <a class="btn btn-primary" href={`mailto:${CONTACT_EMAIL}?subject=Partenariat%20PackLight`}>
-          Devenir partenaire
-        </a>
-      </p>
+      <p>Une idée, une proposition&nbsp;? Réponse sous 48&nbsp;h.</p>
+      <a class="btn btn-amber btn-lg" href={`mailto:${CONTACT_EMAIL}?subject=Partenariat%20PackLight`}>
+        {CONTACT_EMAIL}
+      </a>
     </div>
   </section>
 </BaseLayout>
+
+<style>
+  .intro .lede {
+    font-size: 1.15rem;
+    line-height: 1.6;
+    color: var(--ink-soft);
+    max-width: 60ch;
+    margin: 1.25rem 0 2rem;
+  }
+
+  /* Tuiles chiffres */
+  .stat-tiles { display: grid; gap: 1rem; }
+  .tile {
+    background: var(--surface);
+    border: 1px solid var(--sand-line);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    box-shadow: var(--shadow);
+  }
+  .tile-big {
+    display: block;
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 1.9rem;
+    color: var(--teal);
+    line-height: 1.1;
+    margin-bottom: 0.5rem;
+  }
+  .tile-line { color: var(--ink-soft); font-size: 1rem; line-height: 1.5; }
+
+  .section-sand { background: var(--sand-2); }
+  .muted { color: var(--ink-muted); margin-top: 0.5rem; }
+
+  /* Cartes collaboration */
+  .collab-cards { display: grid; gap: 1.25rem; margin-top: 1.75rem; }
+  .collab {
+    background: var(--surface);
+    border: 1px solid var(--sand-line);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    box-shadow: var(--shadow);
+  }
+  .collab-icon {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 44px; height: 44px; border-radius: 12px;
+    background: var(--teal-soft); color: var(--teal);
+    margin-bottom: 0.9rem;
+  }
+  .collab h3 { margin-bottom: 0.4rem; }
+  .collab p { margin: 0; color: var(--ink-soft); line-height: 1.55; }
+
+  /* Bande "déjà intégrés" */
+  .logo-strip {
+    display: flex;
+    gap: 0.75rem;
+    overflow-x: auto;
+    padding: 0.5rem 0 1rem;
+    margin-top: 1.25rem;
+    scroll-snap-type: x proximity;
+    -webkit-overflow-scrolling: touch;
+  }
+  .logo-chip {
+    flex: 0 0 auto;
+    scroll-snap-align: start;
+    background: var(--surface);
+    border: 1px solid var(--sand-line);
+    border-radius: 999px;
+    padding: 0.6rem 1.1rem;
+    font-weight: 600;
+    color: var(--ink-soft);
+    white-space: nowrap;
+  }
+
+  /* CTA teal */
+  .cta-band {
+    background: var(--teal-dark);
+    color: #fff;
+    padding: 3.5rem 0;
+    text-align: center;
+  }
+  .cta-band h2 { color: #fff; }
+  .cta-band p { color: rgba(255, 255, 255, 0.85); margin: 0.9rem 0 1.6rem; }
+  .btn-lg { font-size: 1.05rem; padding: 1rem 1.75rem; }
+
+  @media (min-width: 720px) {
+    .stat-tiles { grid-template-columns: repeat(3, 1fr); }
+    .collab-cards { grid-template-columns: repeat(3, 1fr); }
+    .logo-strip { flex-wrap: wrap; overflow: visible; }
+  }
+</style>

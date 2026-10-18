@@ -46,20 +46,20 @@ const isActive = (href: string) => {
       <span></span><span></span><span></span>
     </button>
   </div>
-
-  <div class="mobile-nav" id="mobile-nav" hidden>
-    <nav aria-label="Navigation mobile">
-      {links.map((l) => (
-        <a
-          href={l.href}
-          class:list={['mobile-link', { active: isActive(l.href) }]}
-          aria-current={isActive(l.href) ? 'page' : undefined}
-        >{l.label}</a>
-      ))}
-      <a href={download} class="btn btn-primary mobile-cta">{t('nav.download')}</a>
-    </nav>
-  </div>
 </header>
+
+<div class="mobile-nav" id="mobile-nav" hidden>
+  <nav aria-label="Navigation mobile">
+    {links.map((l) => (
+      <a
+        href={l.href}
+        class:list={['mobile-link', { active: isActive(l.href) }]}
+        aria-current={isActive(l.href) ? 'page' : undefined}
+      >{l.label}</a>
+    ))}
+    <a href={download} class="btn btn-primary mobile-cta">{t('nav.download')}</a>
+  </nav>
+</div>
 
 <script is:inline>
   (function () {
