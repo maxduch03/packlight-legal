@@ -1,26 +1,61 @@
 ---
 import { INSTAGRAM_REEL_URL } from '../config';
 
-// Tant que l'URL n'est pas renseignée, on affiche le poster de secours.
+// Tant que l'URL n'est pas renseignée, on garde le poster non cliquable.
 const hasReel = INSTAGRAM_REEL_URL !== 'INSTAGRAM_REEL_URL' && INSTAGRAM_REEL_URL.length > 0;
 const poster = '/assets/reel-poster.webp';
 ---
-<div class="reel">
-  {hasReel ? (
-    <blockquote
-      class="instagram-media"
-      data-instgrm-permalink={INSTAGRAM_REEL_URL}
-      data-instgrm-version="14"
-      style="margin:0; width:100%;"
-    ></blockquote>
-    <script is:inline async src="https://www.instagram.com/embed.js"></script>
-  ) : (
-    <div class="reel-poster">
-      <img src={poster} alt="Aperçu de l'application PackLight en action" width="1080" height="1935" />
-      <span class="reel-play" aria-hidden="true">▶</span>
-    </div>
-  )}
+<div class="reel" data-reel-url={hasReel ? INSTAGRAM_REEL_URL : undefined}>
+  <button type="button" class="reel-poster" aria-label="Lire la vidéo de présentation PackLight sur Instagram">
+    <img src={poster} alt="Aperçu de l'application PackLight en action" width="1080" height="1935" loading="lazy" />
+    <span class="reel-play" aria-hidden="true">▶</span>
+  </button>
 </div>
+
+{hasReel && (
+  <script is:inline>
+    (function () {
+      var reel = document.currentScript.previousElementSibling;
+      if (!reel || !reel.classList.contains('reel')) return;
+      var btn = reel.querySelector('.reel-poster');
+      var url = reel.getAttribute('data-reel-url');
+      if (!btn || !url) return;
+
+      btn.addEventListener('click', function () {
+        // Remplace le poster par l'embed officiel Instagram.
+        var block = document.createElement('blockquote');
+        block.className = 'instagram-media';
+        block.setAttribute('data-instgrm-permalink', url);
+        block.setAttribute('data-instgrm-version', '14');
+        block.style.cssText = 'margin:0; width:100%;';
+        reel.innerHTML = '';
+        reel.appendChild(block);
+
+        var done = false;
+        function fallback() {
+          if (done) return;
+          done = true;
+          window.open(url, '_blank', 'noopener');
+        }
+
+        var script = document.createElement('script');
+        script.async = true;
+        script.src = 'https://www.instagram.com/embed.js';
+        script.onload = function () {
+          done = true;
+          if (window.instgrm && window.instgrm.Embeds) {
+            window.instgrm.Embeds.process();
+          }
+        };
+        script.onerror = fallback;
+        document.body.appendChild(script);
+
+        // Si l'embed est bloqué (adblock, RGPD, réseau), ouvre dans un onglet.
+        setTimeout(fallback, 4000);
+      }, { once: true });
+    })();
+  </script>
+)}
 
 <style>
   .reel {
@@ -29,8 +64,13 @@ const poster = '/assets/reel-poster.webp';
     margin: 0 auto;
   }
   .reel-poster {
+    display: block;
     position: relative;
+    width: 100%;
     aspect-ratio: 9 / 16;
+    border: none;
+    padding: 0;
+    cursor: pointer;
     border-radius: var(--radius);
     overflow: hidden;
     background: var(--sand-2);
@@ -48,5 +88,7 @@ const poster = '/assets/reel-poster.webp';
     border-radius: 50%;
     font-size: 1.4rem;
     padding-left: 4px;
+    transition: transform 0.15s ease, background 0.15s ease;
   }
+  .reel-poster:hover .reel-play { transform: scale(1.06); background: rgba(15, 118, 110, 1); }
 </style>

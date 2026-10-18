@@ -17,7 +17,7 @@ export const AFFINAGE_EMAIL = 'm.ducher2403@gmail.com';
 export const EBOOK_PDF = '/ebook/checklist-depart-pvt.pdf';
 
 /** URL du post Instagram épinglé (reel de preuve). */
-export const INSTAGRAM_REEL_URL = 'INSTAGRAM_REEL_URL';
+export const INSTAGRAM_REEL_URL = 'https://www.instagram.com/reel/Dek9jC0yYuJ/';
 
 /** Email de contact public. */
 export const CONTACT_EMAIL = 'contact@getpacklight.com';
