@@ -6,10 +6,11 @@
   --teal-dark: #0B5048;
   --teal-soft: #E6F2F1;
 
-  /* Sable */
+  /* Sable + blanc cassé */
   --sand: #F7F1E6;
   --sand-2: #EFE6D4;
   --sand-line: #E2D6BF;
+  --off-white: #FDFBF7;
 
   /* Ambre */
   --amber: #E0902F;
@@ -32,6 +33,16 @@
   --radius-sm: 10px;
   --shadow: 0 6px 22px rgba(15, 80, 72, 0.10);
   --shadow-lg: 0 14px 40px rgba(15, 80, 72, 0.14);
+
+  /* Échelle d'espacement 8 px */
+  --sp-1: 8px;
+  --sp-2: 16px;
+  --sp-3: 24px;
+  --sp-4: 32px;
+  --sp-5: 48px;
+  --sp-6: 64px;
+  --sp-7: 80px;
+  --sp-8: 120px;
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -52,10 +63,11 @@ img { max-width: 100%; height: auto; display: block; }
 a { color: var(--teal); text-decoration: none; }
 a:hover { color: var(--teal-dark); }
 
-h1, h2, h3 { font-family: var(--font-display); font-weight: 700; line-height: 1.15; color: var(--ink); }
+/* Titres : Playfair Display réservé aux H1/H2 ; H3 en Montserrat. */
+h1, h2 { font-family: var(--font-display); font-weight: 700; line-height: 1.15; color: var(--ink); }
 h1 { font-size: clamp(2.125rem, 7vw, 3.4rem); letter-spacing: -0.5px; }
 h2 { font-size: clamp(1.5rem, 5vw, 2.3rem); }
-h3 { font-size: 1.2rem; }
+h3 { font-family: var(--font-body); font-weight: 700; font-size: 1.2rem; line-height: 1.25; color: var(--ink); }
 
 p { color: var(--ink-soft); }
 
@@ -63,6 +75,9 @@ p { color: var(--ink-soft); }
 .container { width: 100%; max-width: var(--max); margin: 0 auto; padding: 0 1.25rem; }
 .prose { max-width: 65ch; }
 .section { padding: 3.5rem 0; }
+/* Fonds alternés sable / blanc cassé par section */
+.section-white { background: var(--off-white); }
+.section-sand { background: var(--sand-2); }
 
 /* Rythme de lecture des pages texte (épuré, aéré) */
 .prose > * + * { margin-top: 1.25rem; }
@@ -94,13 +109,29 @@ p { color: var(--ink-soft); }
   border: 2px solid transparent;
   transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
 }
-.btn:active { transform: translateY(1px); }
+.btn:hover { transform: translateY(-1px); box-shadow: var(--shadow-lg); }
+.btn:active { transform: translateY(0); }
+.btn:focus-visible { outline: 3px solid var(--teal); outline-offset: 3px; }
 .btn-primary { background: var(--teal); color: #fff; box-shadow: var(--shadow); }
-.btn-primary:hover { background: var(--teal-dark); color: #fff; box-shadow: var(--shadow-lg); }
+.btn-primary:hover { background: var(--teal-dark); color: #fff; }
 .btn-amber { background: var(--amber); color: #fff; box-shadow: var(--shadow); }
 .btn-amber:hover { background: var(--amber-dark); color: #fff; }
+.btn-amber:focus-visible { outline-color: var(--amber-dark); }
 .btn-ghost { background: transparent; color: var(--teal); border-color: var(--teal); }
 .btn-ghost:hover { background: var(--teal-soft); color: var(--teal-dark); }
+
+@media (prefers-reduced-motion: reduce) {
+  .btn:hover, .btn:active { transform: none; }
+}
+
+/* Focus visible global (accessibilité) */
+a:focus-visible,
+button:focus-visible,
+[tabindex]:focus-visible {
+  outline: 3px solid var(--teal);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
 
 /* Forms */
 input, select, textarea {
