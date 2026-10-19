@@ -1,0 +1,30 @@
+---
+import { STORE_SMART_LINK } from '../config';
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const href = `${STORE_SMART_LINK}&utm_campaign=${lang === 'en' ? 'sticky_en' : 'sticky'}&utm_medium=sticky`;
+---
+<div class="sticky-download" id="sticky-download" aria-hidden="true">
+  <a href={href} class="btn btn-amber" tabindex="-1">{t('nav.download')}</a>
+</div>
+
+<script is:inline>
+  (function () {
+    var bar = document.getElementById('sticky-download');
+    if (!bar) return;
+    var link = bar.querySelector('a');
+    var shown = false;
+    function setShown(v) {
+      if (v === shown) return;
+      shown = v;
+      bar.classList.toggle('show', v);
+      bar.setAttribute('aria-hidden', v ? 'false' : 'true');
+      if (link) link.setAttribute('tabindex', v ? '0' : '-1');
+    }
+    function onScroll() { setShown(window.scrollY > 600); }
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+  })();
+</script>

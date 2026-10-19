@@ -57,23 +57,25 @@ import FeatureBlock from '../../components/FeatureBlock.astro';
     <div class="container">
       <h2 class="examples-title">Generated examples</h2>
       <p class="examples-sub">Real itineraries, created in seconds inside the app.</p>
-      <div class="examples-row">
-        <figure class="example">
-          <img src="/assets/destinations/bali-itineraire.webp" alt="PackLight itinerary generated for Bali" width="760" height="1600" loading="lazy" />
-          <figcaption>Bali</figcaption>
-        </figure>
-        <figure class="example">
-          <img src="/assets/destinations/thailande-itineraire.webp" alt="PackLight itinerary generated for Thailand" width="760" height="1600" loading="lazy" />
-          <figcaption>Thailand</figcaption>
-        </figure>
-        <figure class="example">
-          <img src="/assets/destinations/new-york-itineraire.webp" alt="PackLight itinerary generated for New York" width="760" height="1600" loading="lazy" />
-          <figcaption>New York</figcaption>
-        </figure>
-        <figure class="example">
-          <img src="/assets/destinations/lisbonne-itineraire.webp" alt="PackLight itinerary generated for Lisbon" width="760" height="1600" loading="lazy" />
-          <figcaption>Lisbon</figcaption>
-        </figure>
+      <div class="examples-wrap">
+        <div class="examples-row">
+          <figure class="example reveal">
+            <img src="/assets/destinations/bali-itineraire.webp" alt="PackLight itinerary generated for Bali" width="760" height="1600" loading="lazy" />
+            <figcaption>Bali</figcaption>
+          </figure>
+          <figure class="example reveal">
+            <img src="/assets/destinations/thailande-itineraire.webp" alt="PackLight itinerary generated for Thailand" width="760" height="1600" loading="lazy" />
+            <figcaption>Thailand</figcaption>
+          </figure>
+          <figure class="example reveal">
+            <img src="/assets/destinations/new-york-itineraire.webp" alt="PackLight itinerary generated for New York" width="760" height="1600" loading="lazy" />
+            <figcaption>New York</figcaption>
+          </figure>
+          <figure class="example reveal">
+            <img src="/assets/destinations/lisbonne-itineraire.webp" alt="PackLight itinerary generated for Lisbon" width="760" height="1600" loading="lazy" />
+            <figcaption>Lisbon</figcaption>
+          </figure>
+        </div>
       </div>
     </div>
   </section>
@@ -139,6 +141,18 @@ import FeatureBlock from '../../components/FeatureBlock.astro';
     color: var(--ink-muted);
     margin: 0.5rem 0 1.75rem;
   }
+  .examples-wrap { position: relative; }
+  .examples-wrap::before,
+  .examples-wrap::after {
+    content: "";
+    position: absolute;
+    top: 0; bottom: 0.5rem;
+    width: 28px;
+    pointer-events: none;
+    z-index: 1;
+  }
+  .examples-wrap::before { left: 0; background: linear-gradient(90deg, var(--sand), transparent); }
+  .examples-wrap::after { right: 0; background: linear-gradient(270deg, var(--sand), transparent); }
   .examples-row {
     display: flex;
     gap: 1rem;
@@ -197,11 +211,20 @@ import FeatureBlock from '../../components/FeatureBlock.astro';
     }
     .features-grid { grid-template-columns: repeat(3, 1fr); }
     .affinage-card { padding: 3rem; }
+    .examples-wrap::before, .examples-wrap::after { display: none; }
     .examples-row {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
       overflow: visible;
     }
-    .example { flex: none; max-width: none; }
+    .example { flex: none; max-width: none; perspective: 900px; }
+    .example img { transition: transform 0.3s ease, box-shadow 0.3s ease; }
+    .example:hover img {
+      transform: rotateY(-7deg) rotateX(3deg) translateY(-6px);
+      box-shadow: 0 22px 48px rgba(15, 80, 72, 0.22);
+    }
+  }
+  @media (min-width: 820px) and (prefers-reduced-motion: reduce) {
+    .example:hover img { transform: none; }
   }
 </style>

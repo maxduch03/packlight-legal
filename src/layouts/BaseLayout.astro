@@ -2,6 +2,7 @@
 import '../styles/global.css';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import StickyDownload from '../components/StickyDownload.astro';
 import { SITE_NAME } from '../config';
 import { getLangFromUrl, useTranslations, alternatesFor } from '../i18n/utils';
 
@@ -37,6 +38,7 @@ const abs = (p: string) => new URL(p, Astro.site).href;
 <!DOCTYPE html>
 <html lang={lang}>
 <head>
+  <script is:inline>document.documentElement.classList.add('js');</script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>{pageTitle}</title>
@@ -91,5 +93,36 @@ const abs = (p: string) => new URL(p, Astro.site).href;
     <slot />
   </main>
   <Footer />
+  <StickyDownload />
+
+  <!-- Apparition au scroll : opacity + translateY, stagger 80 ms. -->
+  <script is:inline>
+    (function () {
+      var els = document.querySelectorAll('.reveal');
+      if (!els.length) return;
+      var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (reduce || !('IntersectionObserver' in window)) {
+        els.forEach(function (e) { e.classList.add('in'); });
+        return;
+      }
+      var groups = new Map();
+      els.forEach(function (e) {
+        var p = e.parentElement;
+        if (!groups.has(p)) groups.set(p, 0);
+        e.setAttribute('data-sidx', groups.get(p));
+        groups.set(p, groups.get(p) + 1);
+      });
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (en) {
+          if (!en.isIntersecting) return;
+          var i = parseInt(en.target.getAttribute('data-sidx') || '0', 10);
+          en.target.style.transitionDelay = (i * 80) + 'ms';
+          en.target.classList.add('in');
+          io.unobserve(en.target);
+        });
+      }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+      els.forEach(function (e) { io.observe(e); });
+    })();
+  </script>
 </body>
 </html>

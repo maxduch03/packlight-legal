@@ -105,6 +105,16 @@ const isActive = (href: string) => {
       });
     });
 
+    // Header : fond qui se densifie au scroll.
+    var header = document.querySelector('.site-header');
+    if (header) {
+      var onScroll = function () {
+        header.classList.toggle('scrolled', window.scrollY > 20);
+      };
+      onScroll();
+      window.addEventListener('scroll', onScroll, { passive: true });
+    }
+
     if (!toggle || !panel) return;
 
     function setOpen(open) {

@@ -22,7 +22,7 @@ const partners = [
 ---
 <div class="logo-strip" role="list" aria-label={caption}>
   {partners.map((p) => (
-    <div class="logo-item" role="listitem">
+    <div class="logo-item reveal" role="listitem">
       {p.logo
         ? <img src={p.logo} alt={p.name} height="36" loading="lazy" />
         : <span class="logo-text">{p.name}</span>}
