@@ -33,6 +33,19 @@ const payHref = `${STRIPE_PAYMENT_LINK}?utm_source=site&utm_campaign=sur-mesure`
     </div>
   </section>
 
+  <!-- CE QUE TU REÇOIS -->
+  <section class="section section-sand">
+    <div class="container">
+      <h2>Ce que tu reçois</h2>
+      <ul class="includes">
+        <li>Ton itinéraire réécrit jour par jour, rythme et trajets vérifiés</li>
+        <li>3 à 5 bons plans testés sur place (adresses, prix, timing)</li>
+        <li>Les liens de réservation présélectionnés : tu valides en 1 clic, tu gardes la main</li>
+        <li>Réponse sous 48&nbsp;h, par mail, en PDF + dans l'app</li>
+      </ul>
+    </div>
+  </section>
+
   <!-- AVANT / APRÈS -->
   <section class="section section-white">
     <div class="container">
@@ -77,19 +90,6 @@ const payHref = `${STRIPE_PAYMENT_LINK}?utm_source=site&utm_campaign=sur-mesure`
     </div>
   </section>
 
-  <!-- CE QUE TU REÇOIS -->
-  <section class="section section-sand">
-    <div class="container">
-      <h2>Ce que tu reçois</h2>
-      <ul class="includes">
-        <li>Ton itinéraire ajusté : rythme, enchaînement et timing revus.</li>
-        <li>3 conseils terrain concrets, propres à ta destination.</li>
-        <li>Les réponses à tes questions sur le voyage.</li>
-        <li>Le tout par mail, avec un retour sous 48&nbsp;h.</li>
-      </ul>
-    </div>
-  </section>
-
   <!-- COMMENT ÇA MARCHE -->
   <section class="section">
     <div class="container">
@@ -116,6 +116,7 @@ const payHref = `${STRIPE_PAYMENT_LINK}?utm_source=site&utm_campaign=sur-mesure`
     <div class="container prix-cta">
       <div class="price-amount">69&nbsp;€</div>
       <p class="price-note">69 € TTC — TVA non applicable, art. 293 B du CGI</p>
+      <p class="price-anchor">Un travel planner facture 150 à 400 € l'itinéraire. Ici 69 €, parce que l'IA fait 80 % du travail et je fais les 20 % qui comptent.</p>
       <div class="reviewer">
         <img class="reviewer-portrait" src="/assets/maxime.webp" alt="Portrait de Maxime Ducher" width="96" height="96" loading="lazy" />
         <p class="reviewer-title">Qui relit ton voyage</p>
@@ -126,6 +127,7 @@ const payHref = `${STRIPE_PAYMENT_LINK}?utm_source=site&utm_campaign=sur-mesure`
         </ul>
       </div>
       <a href={payHref} class="btn btn-amber btn-lg">Lancer mon Sur-mesure</a>
+      <p class="guarantee">Pas satisfait sous 7 jours → remboursé, sans question.</p>
     </div>
   </section>
 
@@ -158,6 +160,9 @@ const payHref = `${STRIPE_PAYMENT_LINK}?utm_source=site&utm_campaign=sur-mesure`
       <StoreButtons medium="sur-mesure" />
     </div>
   </section>
+
+  <!-- MENTION LÉGALE -->
+  <p class="legal-micro">PackLight ne réserve pas à ta place : les réservations se font sur les sites partenaires, sous ton nom.</p>
 
   <!-- CTA STRIPE STICKY (mobile) -->
   <div class="sticky-download" id="sticky-stripe" aria-hidden="true">
@@ -266,7 +271,20 @@ const payHref = `${STRIPE_PAYMENT_LINK}?utm_source=site&utm_campaign=sur-mesure`
 
   .prix-cta { text-align: center; }
   .price-amount { font-family: var(--font-display); font-size: 3.2rem; font-weight: 700; color: var(--teal); }
-  .prix-cta .price-note { margin-bottom: 1.5rem; }
+  .prix-cta .price-note { margin-bottom: 0.75rem; }
+  .price-anchor {
+    max-width: 46ch; margin: 0 auto 1.5rem;
+    color: var(--ink-soft); font-size: 0.95rem; line-height: 1.5;
+  }
+  .guarantee {
+    margin: 1rem 0 0; color: var(--ink-soft);
+    font-size: 0.95rem; font-weight: 600;
+  }
+  .legal-micro {
+    max-width: 60ch; margin: 2.5rem auto 0;
+    padding: 0 1.25rem; text-align: center;
+    color: var(--ink-muted); font-size: 0.8rem; line-height: 1.5;
+  }
 
   .reviewer {
     max-width: 30rem; margin: 0 auto 1.75rem;

@@ -33,6 +33,19 @@ const payHref = `${STRIPE_PAYMENT_LINK}?utm_source=site&utm_campaign=tailored_en
     </div>
   </section>
 
+  <!-- WHAT YOU GET -->
+  <section class="section section-sand">
+    <div class="container">
+      <h2>What you get</h2>
+      <ul class="includes">
+        <li>Your itinerary rewritten day by day, pacing and transfers checked</li>
+        <li>3–5 field-tested tips (addresses, prices, timing)</li>
+        <li>Pre-selected booking links: you confirm in 1 click, you stay in control</li>
+        <li>Delivered within 48 h by email, PDF + in the app</li>
+      </ul>
+    </div>
+  </section>
+
   <!-- BEFORE / AFTER -->
   <section class="section section-white">
     <div class="container">
@@ -77,19 +90,6 @@ const payHref = `${STRIPE_PAYMENT_LINK}?utm_source=site&utm_campaign=tailored_en
     </div>
   </section>
 
-  <!-- WHAT YOU GET -->
-  <section class="section section-sand">
-    <div class="container">
-      <h2>What you get</h2>
-      <ul class="includes">
-        <li>Your itinerary tuned: pacing, sequencing and timing reviewed.</li>
-        <li>3 concrete on-the-ground tips, specific to your destination.</li>
-        <li>Answers to your questions about the trip.</li>
-        <li>All by email, with a reply within 48 h.</li>
-      </ul>
-    </div>
-  </section>
-
   <!-- HOW IT WORKS -->
   <section class="section">
     <div class="container">
@@ -116,6 +116,7 @@ const payHref = `${STRIPE_PAYMENT_LINK}?utm_source=site&utm_campaign=tailored_en
     <div class="container prix-cta">
       <div class="price-amount">€69</div>
       <p class="price-note">€69 (≈ A$115) — VAT not applicable, art. 293 B of the French CGI</p>
+      <p class="price-anchor">A travel planner charges €150–400 per itinerary. Here it's €69, because the AI does 80% of the work and I do the 20% that matters.</p>
       <div class="reviewer">
         <img class="reviewer-portrait" src="/assets/maxime.webp" alt="Portrait of Maxime Ducher" width="96" height="96" loading="lazy" />
         <p class="reviewer-title">Who reviews your trip</p>
@@ -126,6 +127,7 @@ const payHref = `${STRIPE_PAYMENT_LINK}?utm_source=site&utm_campaign=tailored_en
         </ul>
       </div>
       <a href={payHref} class="btn btn-amber btn-lg">Start my Tailored</a>
+      <p class="guarantee">Not happy within 7 days → refunded, no questions asked.</p>
     </div>
   </section>
 
@@ -158,6 +160,9 @@ const payHref = `${STRIPE_PAYMENT_LINK}?utm_source=site&utm_campaign=tailored_en
       <StoreButtons medium="tailored" />
     </div>
   </section>
+
+  <!-- LEGAL NOTE -->
+  <p class="legal-micro">PackLight does not book on your behalf: bookings are made on partner sites, in your name.</p>
 
   <!-- STICKY STRIPE CTA (mobile) -->
   <div class="sticky-download" id="sticky-stripe" aria-hidden="true">
@@ -266,7 +271,20 @@ const payHref = `${STRIPE_PAYMENT_LINK}?utm_source=site&utm_campaign=tailored_en
 
   .prix-cta { text-align: center; }
   .price-amount { font-family: var(--font-display); font-size: 3.2rem; font-weight: 700; color: var(--teal); }
-  .prix-cta .price-note { margin-bottom: 1.5rem; }
+  .prix-cta .price-note { margin-bottom: 0.75rem; }
+  .price-anchor {
+    max-width: 46ch; margin: 0 auto 1.5rem;
+    color: var(--ink-soft); font-size: 0.95rem; line-height: 1.5;
+  }
+  .guarantee {
+    margin: 1rem 0 0; color: var(--ink-soft);
+    font-size: 0.95rem; font-weight: 600;
+  }
+  .legal-micro {
+    max-width: 60ch; margin: 2.5rem auto 0;
+    padding: 0 1.25rem; text-align: center;
+    color: var(--ink-muted); font-size: 0.8rem; line-height: 1.5;
+  }
 
   .reviewer {
     max-width: 30rem; margin: 0 auto 1.75rem;
