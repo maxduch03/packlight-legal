@@ -1,7 +1,8 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import StoreButtons from '../../components/StoreButtons.astro';
-import ReelEmbed from '../../components/ReelEmbed.astro';
+import PhoneHero from '../../components/PhoneHero.astro';
+import ProofBar from '../../components/ProofBar.astro';
 import FeatureBlock from '../../components/FeatureBlock.astro';
 import EmailCapture from '../../components/EmailCapture.astro';
 ---
@@ -24,10 +25,13 @@ import EmailCapture from '../../components/EmailCapture.astro';
         <p class="hero-micro">Gratuit · iOS &amp; Android</p>
       </div>
       <div class="hero-visual">
-        <ReelEmbed />
+        <PhoneHero />
       </div>
     </div>
   </section>
+
+  <!-- BARRE DE PREUVE -->
+  <ProofBar />
 
   <!-- 3 BLOCS -->
   <section class="section features-section">
@@ -118,7 +122,11 @@ import EmailCapture from '../../components/EmailCapture.astro';
   }
   .hero-grid { display: grid; gap: 2.5rem; align-items: center; }
   .hero-copy { color: #fff; }
-  .hero-copy h1 { color: #fff; }
+  .hero-copy h1 {
+    color: #fff;
+    font-size: clamp(2.2rem, 8vw, 4.5rem);
+    line-height: 1.05;
+  }
   .hero-copy .lead {
     font-size: 1.15rem;
     margin: 1.25rem 0 1.75rem;

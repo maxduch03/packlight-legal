@@ -1,0 +1,99 @@
+---
+import { getLangFromUrl } from '../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+
+const stats = lang === 'en'
+  ? [
+      { to: 30, suffix: ' s', label: 'to a full itinerary' },
+      { to: 8, suffix: ' in 10', label: 'trips lead to a booking' },
+      { to: 100, suffix: '%', label: 'free to plan' },
+    ]
+  : [
+      { to: 30, suffix: ' s', label: 'pour un itinéraire complet' },
+      { to: 8, suffix: ' sur 10', label: 'voyages débouchent sur une réservation' },
+      { to: 100, suffix: ' %', label: 'gratuit pour planifier' },
+    ];
+---
+<section class="proof">
+  <div class="container">
+    <div class="proof-grid">
+      {stats.map((s) => (
+        <div class="proof-stat">
+          <span class="proof-num" data-count={s.to} data-suffix={s.suffix}>
+            {s.to}{s.suffix}
+          </span>
+          <span class="proof-label">{s.label}</span>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<script is:inline>
+  (function () {
+    var nums = document.querySelectorAll('.proof-num');
+    if (!nums.length) return;
+    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    function run(el) {
+      var to = parseInt(el.getAttribute('data-count'), 10) || 0;
+      var suffix = el.getAttribute('data-suffix') || '';
+      if (reduce) { el.textContent = to + suffix; return; }
+      var start = null;
+      var dur = 1100;
+      function step(ts) {
+        if (start === null) start = ts;
+        var p = Math.min((ts - start) / dur, 1);
+        var eased = 1 - Math.pow(1 - p, 3);
+        el.textContent = Math.round(eased * to) + suffix;
+        if (p < 1) requestAnimationFrame(step);
+      }
+      requestAnimationFrame(step);
+    }
+
+    if (!('IntersectionObserver' in window)) {
+      nums.forEach(run);
+      return;
+    }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) { run(e.target); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.6 });
+    nums.forEach(function (n) { io.observe(n); });
+  })();
+</script>
+
+<style>
+  .proof {
+    background: var(--surface);
+    border-bottom: 1px solid var(--sand-line);
+    padding: 2.25rem 0;
+  }
+  .proof-grid {
+    display: grid;
+    gap: 1.5rem;
+    text-align: center;
+  }
+  .proof-stat { display: flex; flex-direction: column; gap: 0.35rem; }
+  .proof-num {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: clamp(2rem, 7vw, 2.9rem);
+    line-height: 1;
+    color: var(--teal);
+    font-variant-numeric: tabular-nums;
+  }
+  .proof-label {
+    color: var(--ink-soft);
+    font-size: 0.98rem;
+    line-height: 1.4;
+    max-width: 22ch;
+    margin: 0 auto;
+  }
+
+  @media (min-width: 720px) {
+    .proof-grid { grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+  }
+</style>
