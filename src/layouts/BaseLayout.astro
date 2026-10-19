@@ -15,6 +15,8 @@ interface Props {
   noindex?: boolean;
   /** Chemins FR/EN équivalents (hreflang + switch). null = pas d'équivalent. */
   alternates?: { fr: string; en: string } | null;
+  /** Affiche la barre « Télécharger » sticky mobile (désactivée si la page a son propre CTA sticky). */
+  stickyDownload?: boolean;
 }
 
 const lang = getLangFromUrl(Astro.url);
@@ -26,6 +28,7 @@ const {
   ogImage = '/assets/og-default.jpg',
   noindex = false,
   alternates = alternatesFor(Astro.url),
+  stickyDownload = true,
 } = Astro.props;
 
 const tagline = t('footer.tagline');
@@ -92,8 +95,8 @@ const abs = (p: string) => new URL(p, Astro.site).href;
   <main>
     <slot />
   </main>
-  <Footer />
-  <StickyDownload />
+  <Footer alternates={alternates} />
+  {stickyDownload && <StickyDownload />}
 
   <!-- Apparition au scroll : opacity + translateY, stagger 80 ms. -->
   <script is:inline>

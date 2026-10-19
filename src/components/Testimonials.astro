@@ -1,0 +1,93 @@
+---
+import { getLangFromUrl } from '../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const PLAY_URL = 'https://play.google.com/store/apps/details?id=com.mycompany.packlight';
+
+const heading = lang === 'en' ? 'What they say' : 'Ce qu’ils en disent';
+const source = lang === 'en' ? 'Google Play review' : 'Avis Google Play';
+const ratingLabel = lang === 'en' ? '★ 5.0 on Google Play' : '★ 5,0 sur Google Play';
+
+const reviews = lang === 'en'
+  ? [
+      { name: 'Kyllian', quote: 'The documents, visa and vaccine checklists are really handy so you forget nothing — especially for my upcoming trip to Vietnam.' },
+      { name: 'Delphine', quote: 'An app that covers everything you need to organise a trip on your budget, from flights to stay, with the GPS to pick your activities.' },
+      { name: 'Lisa', quote: 'Intuitive app to picture your trip. You can edit your itinerary anytime and keep your important documents right inside it.' },
+    ]
+  : [
+      { name: 'Kyllian', quote: 'Les checklists documents, visas et vaccins sont très pratiques pour ne rien oublier, notamment pour mon prochain voyage au Vietnam.' },
+      { name: 'Delphine', quote: 'Une application qui englobe tout ce dont on a besoin pour organiser un voyage selon son budget, du vol au séjour, avec le GPS associé pour choisir ses activités.' },
+      { name: 'Lisa', quote: 'Application intuitive pour visualiser son voyage. On peut modifier son itinéraire à tout moment et garder ses documents importants directement dedans.' },
+    ];
+---
+<section class="section testimonials">
+  <div class="container">
+    <h2 class="t-title">{heading}</h2>
+    <div class="t-grid">
+      {reviews.map((r) => (
+        <figure class="t-card reveal">
+          <div class="t-head">
+            <span class="t-avatar" aria-hidden="true">{r.name.charAt(0)}</span>
+            <figcaption class="t-name">{r.name}</figcaption>
+          </div>
+          <blockquote class="t-quote">{r.quote}</blockquote>
+          <span class="t-source">{source}</span>
+        </figure>
+      ))}
+    </div>
+    <p class="t-rating">
+      <a href={PLAY_URL} target="_blank" rel="noopener">{ratingLabel}</a>
+    </p>
+  </div>
+</section>
+
+<style>
+  .t-title { text-align: center; margin-bottom: 2rem; }
+  .t-grid { display: grid; gap: 1.25rem; }
+  .t-card {
+    background: var(--surface);
+    border: 1px solid var(--sand-line);
+    border-radius: var(--radius);
+    padding: 1.6rem;
+    box-shadow: var(--shadow);
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+    margin: 0;
+  }
+  .t-head { display: flex; align-items: center; gap: 0.75rem; }
+  .t-avatar {
+    width: 42px; height: 42px;
+    flex: 0 0 auto;
+    display: flex; align-items: center; justify-content: center;
+    background: var(--teal);
+    color: #fff;
+    border-radius: 50%;
+    font-weight: 700;
+    font-size: 1.1rem;
+  }
+  .t-name { font-weight: 700; color: var(--ink); }
+  .t-quote {
+    margin: 0;
+    color: var(--ink-soft);
+    line-height: 1.55;
+    font-size: 1rem;
+  }
+  .t-source {
+    font-size: 0.8rem;
+    color: var(--ink-muted);
+    font-weight: 600;
+    letter-spacing: 0.2px;
+  }
+  .t-rating {
+    text-align: center;
+    margin-top: 1.75rem;
+    font-weight: 700;
+  }
+  .t-rating a { color: var(--amber-dark); }
+  .t-rating a:hover { color: var(--amber); }
+
+  @media (min-width: 820px) {
+    .t-grid { grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+  }
+</style>

@@ -1,0 +1,73 @@
+---
+import { getLangFromUrl } from '../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+
+const heading = lang === 'en' ? 'How it works' : 'Comment ça marche';
+const steps = lang === 'en'
+  ? [
+      { img: '/assets/steps/step-1.webp', title: 'Tell us your trip', text: 'Destination, dates, budget and style: it all starts with a 30-second form.', alt: 'PackLight trip form screen' },
+      { img: '/assets/steps/step-2.webp', title: 'Get your itinerary', text: 'PackLight builds a day-by-day, activity-by-activity plan made for you.', alt: 'PackLight day-by-day itinerary screen' },
+      { img: '/assets/steps/step-3.webp', title: 'Book and go', text: 'Every step is bookable and your packing list is ready. Just leave.', alt: 'PackLight bookable activities screen' },
+    ]
+  : [
+      { img: '/assets/steps/step-1.webp', title: 'Dis-nous ton voyage', text: 'Destination, dates, budget et style : tout part d’un formulaire de 30 secondes.', alt: 'Écran de formulaire de voyage PackLight' },
+      { img: '/assets/steps/step-2.webp', title: 'Reçois ton itinéraire', text: 'PackLight génère un plan jour par jour, activité par activité, pensé pour toi.', alt: 'Écran itinéraire jour par jour PackLight' },
+      { img: '/assets/steps/step-3.webp', title: 'Réserve et pars', text: 'Chaque étape est réservable et ta checklist est prête. Tu n’as plus qu’à partir.', alt: 'Écran activités réservables PackLight' },
+    ];
+---
+<section class="section section-white howto">
+  <div class="container">
+    <h2 class="howto-title">{heading}</h2>
+    <div class="howto-grid">
+      {steps.map((s, i) => (
+        <div class="step reveal">
+          <div class="step-shot">
+            <span class="step-num" aria-hidden="true">{i + 1}</span>
+            <img src={s.img} alt={s.alt} width="460" height="1034" loading="lazy" />
+          </div>
+          <h3>{s.title}</h3>
+          <p>{s.text}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .howto-title { text-align: center; margin-bottom: 2rem; }
+  .howto-grid { display: grid; gap: 2.5rem; }
+  .step { text-align: center; max-width: 320px; margin: 0 auto; }
+  .step-shot {
+    position: relative;
+    width: 62%;
+    max-width: 200px;
+    margin: 0 auto 1.1rem;
+  }
+  .step-shot img {
+    width: 100%;
+    height: auto;
+    border-radius: 18px;
+    box-shadow: var(--shadow-lg);
+    border: 1px solid var(--sand-line);
+  }
+  .step-num {
+    position: absolute;
+    top: -14px; left: -14px;
+    width: 40px; height: 40px;
+    display: flex; align-items: center; justify-content: center;
+    background: var(--teal);
+    color: #fff;
+    border-radius: 50%;
+    font-weight: 700;
+    font-size: 1.1rem;
+    box-shadow: var(--shadow);
+    z-index: 1;
+  }
+  .step h3 { margin-bottom: 0.4rem; }
+  .step p { color: var(--ink-soft); font-size: 0.98rem; line-height: 1.5; }
+
+  @media (min-width: 820px) {
+    .howto-grid { grid-template-columns: repeat(3, 1fr); gap: 2rem; align-items: start; }
+  }
+</style>
