@@ -45,7 +45,7 @@ const payHref = `${STRIPE_PAYMENT_LINK}?utm_source=site&utm_campaign=sur-mesure`
         </figure>
         <figure class="ba-col ba-after">
           <span class="ba-tag ba-tag-after">Relu par Maxime</span>
-          <img src="/assets/destinations/bali-itineraire.webp" alt="Le même itinéraire, relu et ajusté à la main" width="760" height="1600" loading="lazy" />
+          <img src="/assets/destinations/sur-mesure-apres.webp" alt="Le même itinéraire, relu et ajusté à la main" width="760" height="1706" loading="lazy" />
           <ul class="ba-notes" aria-label="Ajustements apportés">
             <li>Rythme revu — J3 allégé</li>
             <li>Timing optimisé entre deux étapes</li>
@@ -116,6 +116,15 @@ const payHref = `${STRIPE_PAYMENT_LINK}?utm_source=site&utm_campaign=sur-mesure`
     <div class="container prix-cta">
       <div class="price-amount">69&nbsp;€</div>
       <p class="price-note">69 € TTC — TVA non applicable, art. 293 B du CGI</p>
+      <div class="reviewer">
+        <img class="reviewer-portrait" src="/assets/maxime.webp" alt="Portrait de Maxime Ducher" width="96" height="96" loading="lazy" />
+        <p class="reviewer-title">Qui relit ton voyage</p>
+        <ul class="reviewer-list">
+          <li>Maxime, journaliste, 5 ans de rédactions parisiennes</li>
+          <li>6 pays parcourus sur le terrain : Australie, Indonésie, Portugal, Islande, Hawaii, Mayotte</li>
+          <li>Réponse sous 48&nbsp;h, itinéraire relu à la main</li>
+        </ul>
+      </div>
       <a href={payHref} class="btn btn-amber btn-lg">Lancer mon Sur-mesure</a>
     </div>
   </section>
@@ -257,7 +266,35 @@ const payHref = `${STRIPE_PAYMENT_LINK}?utm_source=site&utm_campaign=sur-mesure`
 
   .prix-cta { text-align: center; }
   .price-amount { font-family: var(--font-display); font-size: 3.2rem; font-weight: 700; color: var(--teal); }
-  .prix-cta .price-note { margin-bottom: 1.25rem; }
+  .prix-cta .price-note { margin-bottom: 1.5rem; }
+
+  .reviewer {
+    max-width: 30rem; margin: 0 auto 1.75rem;
+    padding: 1.5rem; border: 1px solid var(--sand-line);
+    border-radius: var(--radius); background: var(--surface);
+    box-shadow: var(--shadow);
+  }
+  .reviewer-portrait {
+    width: 96px; height: 96px; border-radius: 50%;
+    object-fit: cover; border: 3px solid var(--teal-soft);
+  }
+  .reviewer-title {
+    font-family: var(--font-display); font-weight: 700;
+    font-size: 1.15rem; color: var(--teal);
+    margin: 0.75rem 0 0.75rem;
+  }
+  .reviewer-list {
+    list-style: none; margin: 0; padding: 0;
+    display: grid; gap: 0.6rem; text-align: left;
+  }
+  .reviewer-list li {
+    position: relative; padding-left: 1.6rem;
+    color: var(--ink-soft); font-size: 0.95rem; line-height: 1.4;
+  }
+  .reviewer-list li::before {
+    content: "✓"; position: absolute; left: 0;
+    color: var(--teal); font-weight: 700;
+  }
 
   .faq { display: grid; gap: 1.25rem; margin-top: 1.5rem; }
   .faq-item h3 { margin-bottom: 0.3rem; font-size: 1.05rem; }
