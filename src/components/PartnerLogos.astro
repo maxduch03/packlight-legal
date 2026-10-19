@@ -1,0 +1,84 @@
+---
+import { getLangFromUrl } from '../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const caption = lang === 'en'
+  ? 'Affiliate partners integrated in the app'
+  : "Partenaires d'affiliation intégrés dans l'app";
+
+// Logos: official public-domain brand files (Wikimedia Commons).
+// No public official logo found for Campings.com, Localrent, Viator → text.
+const partners = [
+  { name: '12Go', logo: '/assets/partners/12go.png' },
+  { name: 'Kiwi', logo: '/assets/partners/kiwi.svg' },
+  { name: 'Expedia', logo: '/assets/partners/expedia.svg' },
+  { name: 'Hotels.com', logo: '/assets/partners/hotels.svg' },
+  { name: 'Airalo', logo: '/assets/partners/airalo.svg' },
+  { name: 'GetYourGuide', logo: '/assets/partners/getyourguide.svg' },
+  { name: 'Campings.com' },
+  { name: 'Localrent' },
+  { name: 'Viator' },
+];
+---
+<div class="logo-strip" role="list" aria-label={caption}>
+  {partners.map((p) => (
+    <div class="logo-item" role="listitem">
+      {p.logo
+        ? <img src={p.logo} alt={p.name} height="36" loading="lazy" />
+        : <span class="logo-text">{p.name}</span>}
+    </div>
+  ))}
+</div>
+<p class="logo-caption">{caption}</p>
+
+<style>
+  .logo-strip {
+    display: flex;
+    align-items: center;
+    gap: 1.75rem;
+    overflow-x: auto;
+    padding: 0.75rem 0 1rem;
+    margin-top: 1.25rem;
+    scroll-snap-type: x proximity;
+    -webkit-overflow-scrolling: touch;
+  }
+  .logo-item {
+    flex: 0 0 auto;
+    scroll-snap-align: start;
+    display: inline-flex;
+    align-items: center;
+    height: 28px;
+  }
+  .logo-item img {
+    height: 28px;
+    width: auto;
+    display: block;
+    filter: grayscale(1);
+    opacity: 0.6;
+    transition: filter 0.2s ease, opacity 0.2s ease;
+  }
+  .logo-item img:hover { filter: none; opacity: 1; }
+  .logo-text {
+    font-weight: 600;
+    color: var(--ink-muted);
+    white-space: nowrap;
+    opacity: 0.6;
+    transition: color 0.2s ease, opacity 0.2s ease;
+  }
+  .logo-text:hover { color: var(--ink-soft); opacity: 1; }
+  .logo-caption {
+    margin-top: 0.4rem;
+    font-size: 0.85rem;
+    color: var(--ink-muted);
+  }
+
+  @media (min-width: 720px) {
+    .logo-strip {
+      flex-wrap: wrap;
+      overflow: visible;
+      gap: 2.25rem 2.75rem;
+    }
+    .logo-item { height: 36px; }
+    .logo-item img { height: 36px; }
+  }
+</style>
