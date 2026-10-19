@@ -4,8 +4,8 @@ import { getLangFromUrl } from '../i18n/utils';
 
 // Tant que l'URL n'est pas renseignée, on garde le poster non cliquable.
 const hasReel = INSTAGRAM_REEL_URL !== 'INSTAGRAM_REEL_URL' && INSTAGRAM_REEL_URL.length > 0;
-const poster = '/assets/reel-poster.webp';
 const lang = getLangFromUrl(Astro.url);
+const poster = lang === 'en' ? '/assets/reel-poster-en.webp' : '/assets/reel-poster.webp';
 const playLabel = lang === 'en'
   ? 'Play the PackLight intro video on Instagram'
   : 'Lire la vidéo de présentation PackLight sur Instagram';
@@ -65,6 +65,10 @@ const posterAlt = lang === 'en'
   </script>
 )}
 
+{lang === 'en' && (
+  <p class="reel-note">Demo in French, subtitled — English version coming soon.</p>
+)}
+
 <style>
   .reel {
     width: 100%;
@@ -99,4 +103,11 @@ const posterAlt = lang === 'en'
     transition: transform 0.15s ease, background 0.15s ease;
   }
   .reel-poster:hover .reel-play { transform: scale(1.06); background: rgba(15, 118, 110, 1); }
+  .reel-note {
+    margin: 0.9rem auto 0;
+    max-width: 360px;
+    text-align: center;
+    font-size: 0.85rem;
+    color: var(--ink-muted);
+  }
 </style>
