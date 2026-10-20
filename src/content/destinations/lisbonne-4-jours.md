@@ -6,6 +6,7 @@ description: "Itinéraire Lisbonne 4 jours généré par PackLight puis corrigé
 hero: /assets/destinations/lisbonne-desktop.webp
 heroMobile: /assets/destinations/lisbonne-mobile.webp
 itineraryImage: /assets/destinations/lisbonne-itineraire.webp
+translationOf: lisbon-4-days
 order: 30
 published: true
 tips:
