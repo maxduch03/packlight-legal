@@ -43,6 +43,17 @@ const abs = (p: string) => new URL(p, Astro.site).href;
 <html lang={lang}>
 <head>
   <script is:inline>document.documentElement.classList.add('js');</script>
+  <!-- Créatrices : mémorise utm_source=creator&utm_campaign=… (premier contact). -->
+  <script is:inline>
+    (function () {
+      try {
+        var q = new URLSearchParams(location.search);
+        if ((q.get('utm_source') || '').toLowerCase() !== 'creator') return;
+        var c = (q.get('utm_campaign') || '').toLowerCase().trim();
+        if (c && !localStorage.getItem('pl_creator')) localStorage.setItem('pl_creator', c);
+      } catch (e) {}
+    })();
+  </script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>{pageTitle}</title>

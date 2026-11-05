@@ -1,0 +1,62 @@
+---
+// Champ « code promo » du Sur-mesure + attribution créatrice.
+// Met à jour tous les liens [data-pay] (Stripe Payment Link) :
+//   prefilled_promo_code=<CODE> (code saisi et reconnu → −10 % chez Stripe)
+//   client_reference_id=creator_<campagne> (code saisi, sinon l'attribution
+//   utm mémorisée par BaseLayout) → stocké dans la commande Stripe pour la
+//   commission.
+import { CREATORS } from '../config';
+interface Props { lang: 'fr' | 'en' }
+const { lang } = Astro.props;
+const t = lang === 'fr'
+  ? { label: 'Code promo (facultatif)', ok: '−10 % appliqués au paiement', ko: 'Code inconnu' }
+  : { label: 'Promo code (optional)', ok: '−10% applied at checkout', ko: 'Unknown code' };
+---
+<div class="creator-promo">
+  <label for="promo-code">{t.label}</label>
+  <input id="promo-code" name="promo" type="text" autocomplete="off" autocapitalize="characters" spellcheck="false" />
+  <p class="promo-msg" id="promo-msg" aria-live="polite" data-ok={t.ok} data-ko={t.ko}></p>
+</div>
+<script is:inline define:vars={{ creators: CREATORS }}>
+  (function () {
+    var input = document.getElementById('promo-code');
+    var msg = document.getElementById('promo-msg');
+    var stored = null;
+    try { stored = localStorage.getItem('pl_creator'); } catch (e) {}
+    function codeFor(campaign) {
+      for (var k in creators) if (creators[k] === campaign) return k;
+      return null;
+    }
+    if (stored && codeFor(stored) && input && !input.value) input.value = codeFor(stored);
+    function update() {
+      var typed = (input && input.value || '').toUpperCase().replace(/\s+/g, '');
+      var promo = typed && creators[typed] ? typed : null;
+      if (msg) {
+        msg.textContent = !typed ? '' : promo ? msg.dataset.ok : msg.dataset.ko;
+        msg.className = 'promo-msg' + (typed ? (promo ? ' ok' : ' ko') : '');
+      }
+      var campaign = promo ? creators[promo] : (stored && codeFor(stored) ? stored : null);
+      document.querySelectorAll('a[data-pay]').forEach(function (a) {
+        var u = new URL(a.getAttribute('data-pay'));
+        if (promo) u.searchParams.set('prefilled_promo_code', promo);
+        if (campaign) u.searchParams.set('client_reference_id', 'creator_' + campaign);
+        a.href = u.toString();
+      });
+    }
+    if (input) input.addEventListener('input', update);
+    // The pay buttons come AFTER this component in the page: wait for them.
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', update);
+    else update();
+  })();
+</script>
+<style>
+  .creator-promo { margin: 1rem 0 0.25rem; max-width: 320px; }
+  .creator-promo label { display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 0.35rem; }
+  .creator-promo input {
+    width: 100%; padding: 0.6rem 0.8rem; border: 1px solid #cbd5e1; border-radius: 10px;
+    font-size: 1rem; text-transform: uppercase; letter-spacing: 0.5px;
+  }
+  .promo-msg { min-height: 1.2em; font-size: 0.85rem; margin: 0.35rem 0 0; }
+  .promo-msg.ok { color: #0f766e; }
+  .promo-msg.ko { color: #b91c1c; }
+</style>

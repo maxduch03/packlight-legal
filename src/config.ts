@@ -25,3 +25,18 @@ export const CONTACT_EMAIL = 'contact@getpacklight.com';
 /** Nom du site et baseline. */
 export const SITE_NAME = 'PackLight';
 export const SITE_TAGLINE = "Partir devrait être aussi simple que d'en avoir envie.";
+
+/**
+ * Créatrices (miroir de la table Remote Config `creators` de l'app) :
+ * code promo → utm_campaign. Un lien
+ * app.getpacklight.com/?utm_source=creator&utm_campaign=<code minuscule>
+ * ou getpacklight.com/…?utm_source=creator&utm_campaign=… attribue la
+ * visiteuse ; le code promo donne −10 % sur le Sur-mesure (coupon Stripe).
+ */
+export const CREATORS: Record<string, string> = {
+  MICHAELA: 'michaela',
+  HEIDI: 'heidi',
+  EUGE: 'euge',
+  ALII: 'alii',
+  CAMILLE: 'camille',
+};

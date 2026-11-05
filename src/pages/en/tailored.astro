@@ -2,6 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import StoreButtons from '../../components/StoreButtons.astro';
 import { STRIPE_PAYMENT_LINK } from '../../config';
+import CreatorPromo from '../../components/CreatorPromo.astro';
 
 const payHref = `${STRIPE_PAYMENT_LINK}?utm_source=site&utm_campaign=tailored_en`;
 ---
@@ -20,7 +21,8 @@ const payHref = `${STRIPE_PAYMENT_LINK}?utm_source=site&utm_campaign=tailored_en
         we start from the itinerary you generated in the app, fine-tune it, and answer
         your questions — so you leave genuinely at ease.
       </p>
-      <a href={payHref} class="btn btn-amber btn-lg">Start my Tailored — €69</a>
+      <CreatorPromo lang="en" />
+      <a href={payHref} data-pay={payHref} class="btn btn-amber btn-lg">Start my Tailored — €69</a>
       <p class="price-note">€69 (≈ A$115) — VAT not applicable, art. 293 B of the French CGI</p>
       <img
         class="sur-mesure-shot"
@@ -126,7 +128,7 @@ const payHref = `${STRIPE_PAYMENT_LINK}?utm_source=site&utm_campaign=tailored_en
           <li>Reply within 48 h, itinerary reviewed by hand</li>
         </ul>
       </div>
-      <a href={payHref} class="btn btn-amber btn-lg">Start my Tailored</a>
+      <a href={payHref} data-pay={payHref} class="btn btn-amber btn-lg">Start my Tailored</a>
       <p class="guarantee">Not happy within 7 days → refunded, no questions asked.</p>
     </div>
   </section>
@@ -166,7 +168,7 @@ const payHref = `${STRIPE_PAYMENT_LINK}?utm_source=site&utm_campaign=tailored_en
 
   <!-- STICKY STRIPE CTA (mobile) -->
   <div class="sticky-download" id="sticky-stripe" aria-hidden="true">
-    <a href={payHref} class="btn btn-amber" tabindex="-1">Start my Tailored — €69</a>
+    <a href={payHref} data-pay={payHref} class="btn btn-amber" tabindex="-1">Start my Tailored — €69</a>
   </div>
   <script is:inline>
     (function () {
