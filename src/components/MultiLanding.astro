@@ -18,7 +18,7 @@ const copy = {
     lead:
       'Vietnam, Cambodia, Thailand — add up to 5 stops and PackLight builds a single day-by-day itinerary that visits them in your order, with the transfers in between.',
     micro: 'Free · iOS & Android · update to 1.2',
-    heroAlt: 'Screenshot coming soon: a Vietnam + Cambodia + Thailand itinerary in PackLight',
+    heroAlt: 'PackLight itinerary, day 4: transfer card for the bus from Hanoi to Da Nang with Maps, 12Go and directions',
     exampleTitle: 'One trip, three countries',
     exampleSub: 'Vietnam + Cambodia + Thailand, 14 days',
     example: [
@@ -39,9 +39,9 @@ const copy = {
     ],
     shotsTitle: 'In the app',
     shots: [
-      { alt: 'Screenshot coming soon: adding stops on the home screen', label: 'Add your stops' },
-      { alt: 'Screenshot coming soon: transfer card between two cities', label: 'Transfers between cities' },
-      { alt: 'Screenshot coming soon: About tab with one section per country', label: 'Info for each country' },
+      { alt: 'PackLight home screen: Paris to Vietnam, with Cambodia and Thailand added as stops', label: 'Add your stops' },
+      { alt: 'About tab of a Vietnam + Cambodia + Thailand trip: currency and typical costs for each country', label: 'Info for each country' },
+      { alt: 'Checklist of a Vietnam + Cambodia + Thailand trip: visa and entry requirements per country', label: 'One packing list' },
     ],
     stepsTitle: 'How it works',
     steps: [
@@ -58,7 +58,7 @@ const copy = {
     lead:
       'Viêt Nam, Cambodge, Thaïlande — ajoute jusqu’à 5 étapes et PackLight construit un seul itinéraire jour par jour qui les enchaîne dans ton ordre, trajets compris.',
     micro: 'Gratuit · iOS & Android · mets à jour en 1.2',
-    heroAlt: 'Capture à venir : un itinéraire Viêt Nam + Cambodge + Thaïlande dans PackLight',
+    heroAlt: 'Itinéraire PackLight, jour 4 : carte de trajet pour le bus Hanoï → Da Nang avec Maps, 12Go et l’itinéraire d’accès',
     exampleTitle: 'Un voyage, trois pays',
     exampleSub: 'Viêt Nam + Cambodge + Thaïlande, 14 jours',
     example: [
@@ -79,9 +79,9 @@ const copy = {
     ],
     shotsTitle: 'Dans l’app',
     shots: [
-      { alt: 'Capture à venir : ajout des étapes sur l’accueil', label: 'Ajoute tes étapes' },
-      { alt: 'Capture à venir : carte de trajet entre deux villes', label: 'Les trajets entre villes' },
-      { alt: 'Capture à venir : onglet À propos, une section par pays', label: 'Les infos de chaque pays' },
+      { alt: 'Accueil de PackLight : Paris vers Viêt Nam, avec Cambodge et Thaïlande ajoutés en étapes', label: 'Ajoute tes étapes' },
+      { alt: 'Onglet À propos d’un voyage Viêt Nam + Cambodge + Thaïlande : devise et coûts typiques de chaque pays', label: 'Les infos de chaque pays' },
+      { alt: 'Checklist d’un voyage Viêt Nam + Cambodge + Thaïlande : visa et conditions d’entrée par pays', label: 'Une seule checklist' },
     ],
     stepsTitle: 'Comment ça marche',
     steps: [
@@ -96,10 +96,14 @@ const copy = {
 
 /**
  * Captures : renseigner `src` (ex. '/assets/multi/stops.webp') quand elles arrivent.
- * heroShot = itinéraire multi-pays ; shots = étapes, trajet, À propos (même ordre que copy.shots).
+ * heroShot = carte de trajet ; shots = accueil, À propos, checklist (même ordre que copy.shots).
  */
-const heroShot: { src?: string } = {};
-const shots: { src?: string }[] = [{}, {}, {}];
+const heroShot: { src?: string } = { src: '/assets/multi/transit.webp' };
+const shots: { src?: string }[] = [
+  { src: '/assets/multi/home.webp' },
+  { src: '/assets/multi/about.webp' },
+  { src: '/assets/multi/checklist.webp' },
+];
 ---
 <!-- HERO -->
 <section class="section multi-hero">

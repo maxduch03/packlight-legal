@@ -11,10 +11,10 @@ interface Props {
   width?: number;
   height?: number;
 }
-const { alt, label, src, width = 760, height = 1600 } = Astro.props;
+const { alt, label, src, width = 760, height = 1645 } = Astro.props;
 ---
 <figure class="shot">
-  <div class="shot-frame">
+  <div class="shot-frame" style={`aspect-ratio: ${width} / ${height}`}>
     {src ? (
       <img src={src} alt={alt} width={width} height={height} loading="lazy" />
     ) : (
@@ -33,7 +33,6 @@ const { alt, label, src, width = 760, height = 1600 } = Astro.props;
     width: 100%;
     max-width: 240px;
     margin: 0 auto;
-    aspect-ratio: 760 / 1600;
     border-radius: 28px;
     padding: 8px;
     background: linear-gradient(160deg, #20302d, #0b1b18);

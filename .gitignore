@@ -20,3 +20,6 @@ node_modules/
 npm-debug.log*
 # macOS / editors
 .DS_Store
+
+# Captures sources (seuls les .webp sont publiés)
+public/assets/multi/*.png
