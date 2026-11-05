@@ -1,0 +1,264 @@
+---
+/**
+ * Landing « Plusieurs pays, un seul voyage » (app 1.2.0) — /fr/multi et /en/multi.
+ * Tous les CTA stores portent utm_campaign=multi.
+ * Captures : placeholders tant que `src` n'est pas renseigné dans `shots`.
+ */
+import StoreButtons from './StoreButtons.astro';
+import ShotPlaceholder from './ShotPlaceholder.astro';
+import { getLangFromUrl } from '../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const CAMPAIGN = 'multi';
+
+const copy = {
+  en: {
+    badge: 'New in PackLight 1.2',
+    h1: 'Several countries in one trip.',
+    lead:
+      'Vietnam, Cambodia, Thailand — add up to 5 stops and PackLight builds a single day-by-day itinerary that visits them in your order, with the transfers in between.',
+    micro: 'Free · iOS & Android · update to 1.2',
+    heroAlt: 'Screenshot coming soon: a Vietnam + Cambodia + Thailand itinerary in PackLight',
+    exampleTitle: 'One trip, three countries',
+    exampleSub: 'Vietnam + Cambodia + Thailand, 14 days',
+    example: [
+      { city: 'Hanoi', country: 'Vietnam', nights: '4 nights' },
+      { city: 'Hue', country: 'Vietnam', nights: '3 nights' },
+      { city: 'Siem Reap', country: 'Cambodia', nights: '3 nights' },
+      { city: 'Bangkok', country: 'Thailand', nights: '4 nights' },
+    ],
+    exampleNote: 'Illustrative split — the app adapts nights to your dates and pace.',
+    featuresTitle: 'What changes with 1.2',
+    features: [
+      { t: 'Up to 5 stops, in your order', d: 'Tap “+ Add a stop” under Destination. Cities or whole countries — PackLight keeps the order you typed.' },
+      { t: 'The journey between cities', d: 'Each change of city gets its own card: bus, train, ferry or flight, with a link to book it.' },
+      { t: 'A plan that holds up', d: 'Before generating, PackLight checks it’s doable: at least 2 nights per stop, a day for each border. Too tight? It suggests more days or one stop fewer.' },
+      { t: 'Country by country', d: 'The About tab covers each country: currency, visa, emergency numbers, embassies, health, culture.' },
+      { t: 'One packing list', d: 'Shared items once, visa and currency for each country, and the right plug adapter for the whole route.' },
+      { t: 'Cross-border road trips', d: 'Drive from A to B through several countries, with stages in driving order and nights split sensibly.' },
+    ],
+    shotsTitle: 'In the app',
+    shots: [
+      { alt: 'Screenshot coming soon: adding stops on the home screen', label: 'Add your stops' },
+      { alt: 'Screenshot coming soon: transfer card between two cities', label: 'Transfers between cities' },
+      { alt: 'Screenshot coming soon: About tab with one section per country', label: 'Info for each country' },
+    ],
+    stepsTitle: 'How it works',
+    steps: [
+      { t: 'Add your stops', d: 'Type a first destination, then “+ Add a stop” — up to 5.' },
+      { t: 'Pick dates and style', d: 'Duration, pace, budget: PackLight shares the nights across your stops.' },
+      { t: 'Tweak with Packy', d: '“One more night in Hue”, “remove Bangkok”: only the affected days are rewritten.' },
+    ],
+    ctaTitle: 'Your next trip doesn’t stop at one border.',
+    ctaSub: 'Download PackLight, or update to version 1.2.',
+  },
+  fr: {
+    badge: 'Nouveau dans PackLight 1.2',
+    h1: 'Plusieurs pays, un seul voyage.',
+    lead:
+      'Viêt Nam, Cambodge, Thaïlande — ajoute jusqu’à 5 étapes et PackLight construit un seul itinéraire jour par jour qui les enchaîne dans ton ordre, trajets compris.',
+    micro: 'Gratuit · iOS & Android · mets à jour en 1.2',
+    heroAlt: 'Capture à venir : un itinéraire Viêt Nam + Cambodge + Thaïlande dans PackLight',
+    exampleTitle: 'Un voyage, trois pays',
+    exampleSub: 'Viêt Nam + Cambodge + Thaïlande, 14 jours',
+    example: [
+      { city: 'Hanoï', country: 'Viêt Nam', nights: '4 nuits' },
+      { city: 'Huế', country: 'Viêt Nam', nights: '3 nuits' },
+      { city: 'Siem Reap', country: 'Cambodge', nights: '3 nuits' },
+      { city: 'Bangkok', country: 'Thaïlande', nights: '4 nuits' },
+    ],
+    exampleNote: 'Répartition indicative — l’app adapte les nuits à tes dates et à ton rythme.',
+    featuresTitle: 'Ce qui change avec la 1.2',
+    features: [
+      { t: 'Jusqu’à 5 étapes, dans ton ordre', d: 'Touche « + Ajouter une étape » sous Destination. Des villes ou des pays entiers — PackLight garde l’ordre que tu as saisi.' },
+      { t: 'Le trajet entre les villes', d: 'Chaque changement de ville a sa carte : bus, train, ferry ou avion, avec un lien pour réserver.' },
+      { t: 'Un plan qui tient la route', d: 'Avant de générer, PackLight vérifie que c’est faisable : 2 nuits minimum par étape, un jour par frontière. Trop serré ? Il propose plus de jours ou une étape de moins.' },
+      { t: 'Pays par pays', d: 'L’onglet À propos couvre chaque pays : devise, visa, urgences, ambassades, santé, culture.' },
+      { t: 'Une seule checklist', d: 'Les essentiels une fois, visa et devise pour chaque pays, et le bon adaptateur de prise pour tout le parcours.' },
+      { t: 'Road trips transfrontaliers', d: 'Roule de A à B à travers plusieurs pays, étapes dans l’ordre de conduite et nuits bien réparties.' },
+    ],
+    shotsTitle: 'Dans l’app',
+    shots: [
+      { alt: 'Capture à venir : ajout des étapes sur l’accueil', label: 'Ajoute tes étapes' },
+      { alt: 'Capture à venir : carte de trajet entre deux villes', label: 'Les trajets entre villes' },
+      { alt: 'Capture à venir : onglet À propos, une section par pays', label: 'Les infos de chaque pays' },
+    ],
+    stepsTitle: 'Comment ça marche',
+    steps: [
+      { t: 'Ajoute tes étapes', d: 'Saisis une première destination, puis « + Ajouter une étape » — jusqu’à 5.' },
+      { t: 'Choisis dates et style', d: 'Durée, rythme, budget : PackLight répartit les nuits entre tes étapes.' },
+      { t: 'Ajuste avec Packy', d: '« Une nuit de plus à Huế », « enlève Bangkok » : seuls les jours concernés sont réécrits.' },
+    ],
+    ctaTitle: 'Ton prochain voyage ne s’arrête pas à une frontière.',
+    ctaSub: 'Télécharge PackLight, ou mets l’app à jour en version 1.2.',
+  },
+}[lang];
+
+/**
+ * Captures : renseigner `src` (ex. '/assets/multi/stops.webp') quand elles arrivent.
+ * heroShot = itinéraire multi-pays ; shots = étapes, trajet, À propos (même ordre que copy.shots).
+ */
+const heroShot: { src?: string } = {};
+const shots: { src?: string }[] = [{}, {}, {}];
+---
+<!-- HERO -->
+<section class="section multi-hero">
+  <div class="container multi-hero-grid">
+    <div>
+      <span class="badge">{copy.badge}</span>
+      <h1>{copy.h1}</h1>
+      <p class="lead">{copy.lead}</p>
+      <StoreButtons medium="hero" campaign={CAMPAIGN} />
+      <p class="micro">{copy.micro}</p>
+    </div>
+    <ShotPlaceholder alt={copy.heroAlt} src={heroShot.src} />
+  </div>
+</section>
+
+<!-- EXAMPLE ROUTE -->
+<section class="section section-sand">
+  <div class="container">
+    <h2>{copy.exampleTitle}</h2>
+    <p class="muted">{copy.exampleSub}</p>
+    <ol class="route">
+      {copy.example.map((s, i) => (
+        <li class="reveal">
+          <span class="route-num">{i + 1}</span>
+          <div>
+            <strong>{s.city}</strong>
+            <span class="route-meta">{s.country} · {s.nights}</span>
+          </div>
+        </li>
+      ))}
+    </ol>
+    <p class="note">{copy.exampleNote}</p>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="section section-white">
+  <div class="container">
+    <h2>{copy.featuresTitle}</h2>
+    <div class="features">
+      {copy.features.map((f) => (
+        <div class="feature-card reveal">
+          <h3>{f.t}</h3>
+          <p>{f.d}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- SCREENSHOTS -->
+<section class="section">
+  <div class="container">
+    <h2>{copy.shotsTitle}</h2>
+    <div class="shots">
+      {copy.shots.map((s, i) => (
+        <ShotPlaceholder alt={s.alt} label={s.label} src={shots[i]?.src} />
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="section section-sand">
+  <div class="container">
+    <h2>{copy.stepsTitle}</h2>
+    <ol class="steps">
+      {copy.steps.map((s, i) => (
+        <li>
+          <span class="step-num">{i + 1}</span>
+          <div><strong>{s.t}</strong><p>{s.d}</p></div>
+        </li>
+      ))}
+    </ol>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-band">
+  <div class="container">
+    <h2>{copy.ctaTitle}</h2>
+    <p>{copy.ctaSub}</p>
+    <div class="cta-stores"><StoreButtons medium="bottom" campaign={CAMPAIGN} /></div>
+  </div>
+</section>
+
+<style>
+  .multi-hero { background: var(--teal-soft); }
+  .multi-hero-grid { display: grid; gap: 2.5rem; align-items: center; }
+  .badge {
+    display: inline-block;
+    background: var(--amber-soft);
+    color: var(--amber-dark);
+    font-weight: 700;
+    font-size: 0.8rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    padding: 0.35rem 0.75rem;
+    border-radius: 999px;
+    margin-bottom: 1rem;
+  }
+  .lead { font-size: 1.12rem; line-height: 1.6; color: var(--ink-soft); margin: 1rem 0 1.75rem; max-width: 56ch; }
+  .micro { font-size: 0.85rem; color: var(--ink-muted); margin-top: 0.9rem; }
+  .muted { color: var(--ink-muted); margin-top: 0.4rem; }
+  .note { font-size: 0.85rem; color: var(--ink-muted); margin-top: 1rem; }
+
+  .route { list-style: none; padding: 0; margin: 1.75rem 0 0; display: grid; gap: 0.75rem; }
+  .route li {
+    display: flex; align-items: center; gap: 0.9rem;
+    background: var(--surface);
+    border: 1px solid var(--sand-line);
+    border-radius: var(--radius-sm);
+    padding: 0.9rem 1.1rem;
+    box-shadow: var(--shadow);
+  }
+  .route-num {
+    flex: none;
+    width: 34px; height: 34px; border-radius: 50%;
+    display: inline-flex; align-items: center; justify-content: center;
+    background: var(--teal); color: #fff; font-weight: 700;
+  }
+  .route strong { display: block; }
+  .route-meta { color: var(--ink-muted); font-size: 0.9rem; }
+
+  .features { display: grid; gap: 1.1rem; margin-top: 1.75rem; }
+  .feature-card {
+    background: var(--surface);
+    border: 1px solid var(--sand-line);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    box-shadow: var(--shadow);
+  }
+  .feature-card h3 { margin-bottom: 0.45rem; }
+  .feature-card p { margin: 0; color: var(--ink-soft); line-height: 1.55; font-size: 0.95rem; }
+
+  .shots { display: grid; gap: 2rem; margin-top: 1.75rem; }
+
+  .steps { list-style: none; padding: 0; margin: 1.75rem 0 0; display: grid; gap: 1.25rem; }
+  .steps li { display: flex; gap: 1rem; align-items: flex-start; }
+  .step-num {
+    flex: none;
+    width: 36px; height: 36px; border-radius: 50%;
+    display: inline-flex; align-items: center; justify-content: center;
+    background: var(--amber); color: #fff; font-weight: 700;
+  }
+  .steps p { margin: 0.25rem 0 0; color: var(--ink-soft); }
+
+  .cta-band { background: var(--teal-dark); color: #fff; padding: 3.5rem 0; text-align: center; }
+  .cta-band h2 { color: #fff; }
+  .cta-band p { color: rgba(255, 255, 255, 0.85); margin: 0.9rem 0 1.6rem; }
+  .cta-stores { display: flex; justify-content: center; }
+
+  @media (min-width: 720px) {
+    .features { grid-template-columns: repeat(2, 1fr); }
+    .shots { grid-template-columns: repeat(3, 1fr); }
+    .route { grid-template-columns: repeat(4, 1fr); }
+  }
+  @media (min-width: 860px) {
+    .multi-hero-grid { grid-template-columns: 1.3fr 1fr; }
+    .features { grid-template-columns: repeat(3, 1fr); }
+  }
+</style>

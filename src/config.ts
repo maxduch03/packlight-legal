@@ -10,6 +10,13 @@ export const STRIPE_PAYMENT_LINK = 'https://buy.stripe.com/4gM5kEcNod2fd8A9oxd3i
 /** Endpoint Formspree — capture email pour l'ebook. */
 export const FORMSPREE_EBOOK = 'https://formspree.io/f/mwlvaqey';
 
+/**
+ * Endpoint Formspree — candidatures créatrices (/en/creators).
+ * Même formulaire que l'ebook pour l'instant (champ `source` + `_subject`
+ * distincts) ; remplacer par un formulaire dédié si besoin.
+ */
+export const FORMSPREE_CREATORS = FORMSPREE_EBOOK;
+
 /** Email perso pour les demandes d'Affinage (envoi du lien d'itinéraire). */
 export const AFFINAGE_EMAIL = 'm.ducher2403@gmail.com';
 

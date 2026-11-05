@@ -5,11 +5,15 @@ import { getLangFromUrl, useTranslations } from '../i18n/utils';
 interface Props {
   /** Source UTM supplémentaire (ex. "hero", "affinage"). Optionnel. */
   medium?: string;
+  /** utm_campaign imposée (ex. "multi") ; sinon site_en en anglais, rien en FR. */
+  campaign?: string;
 }
-const { medium } = Astro.props;
+const { medium, campaign: campaignProp } = Astro.props;
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
-const campaign = lang === 'en' ? '&utm_campaign=site_en' : '';
+const campaign = campaignProp
+  ? `&utm_campaign=${campaignProp}`
+  : lang === 'en' ? '&utm_campaign=site_en' : '';
 const href = `${STORE_SMART_LINK}${campaign}${medium ? `&utm_medium=${medium}` : ''}`;
 ---
 <div class="store-buttons">

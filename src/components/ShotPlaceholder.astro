@@ -1,0 +1,68 @@
+---
+/**
+ * Emplacement de capture d'écran (cadre de téléphone).
+ * Sans `src` : placeholder visible « capture à venir » — déposer l'image
+ * dans public/assets/multi/ puis passer son chemin en `src`.
+ */
+interface Props {
+  alt: string;
+  label?: string;
+  src?: string;
+  width?: number;
+  height?: number;
+}
+const { alt, label, src, width = 760, height = 1600 } = Astro.props;
+---
+<figure class="shot">
+  <div class="shot-frame">
+    {src ? (
+      <img src={src} alt={alt} width={width} height={height} loading="lazy" />
+    ) : (
+      <div class="shot-empty" role="img" aria-label={alt} data-placeholder>
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="12" cy="12" r="3.2"/><path d="M8 5l1.5-2h5L16 5"/></svg>
+        <span>{alt}</span>
+      </div>
+    )}
+  </div>
+  {label && <figcaption>{label}</figcaption>}
+</figure>
+
+<style>
+  .shot { margin: 0; text-align: center; }
+  .shot-frame {
+    width: 100%;
+    max-width: 240px;
+    margin: 0 auto;
+    aspect-ratio: 760 / 1600;
+    border-radius: 28px;
+    padding: 8px;
+    background: linear-gradient(160deg, #20302d, #0b1b18);
+    box-shadow: var(--shadow-lg);
+  }
+  .shot-frame img,
+  .shot-empty {
+    width: 100%;
+    height: 100%;
+    border-radius: 21px;
+    display: block;
+    object-fit: cover;
+  }
+  .shot-empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    padding: 1.25rem;
+    background: repeating-linear-gradient(135deg, var(--sand) 0 14px, var(--sand-2) 14px 28px);
+    color: var(--ink-muted);
+    font-size: 0.85rem;
+    line-height: 1.4;
+  }
+  figcaption {
+    margin-top: 0.9rem;
+    font-weight: 600;
+    color: var(--ink);
+    font-size: 0.95rem;
+  }
+</style>

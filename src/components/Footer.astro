@@ -45,6 +45,7 @@ const madeIn = lang === 'en'
         <a href={route(lang, 'tailored')}>{t('nav.affinage')}</a>
         <a href={route(lang, 'about')}>{t('nav.about')}</a>
         <a href={route(lang, 'partners')}>{t('nav.partners')}</a>
+        {lang === 'en' && <a href="/en/creators">Creators</a>}
       </nav>
     </div>
     <div>

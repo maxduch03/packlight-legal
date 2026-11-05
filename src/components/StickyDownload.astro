@@ -4,7 +4,12 @@ import { getLangFromUrl, useTranslations } from '../i18n/utils';
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
-const href = `${STORE_SMART_LINK}&utm_campaign=${lang === 'en' ? 'sticky_en' : 'sticky'}&utm_medium=sticky`;
+interface Props {
+  /** utm_campaign imposée par la page (ex. "multi"). */
+  campaign?: string;
+}
+const { campaign = lang === 'en' ? 'sticky_en' : 'sticky' } = Astro.props;
+const href = `${STORE_SMART_LINK}&utm_campaign=${campaign}&utm_medium=sticky`;
 ---
 <div class="sticky-download" id="sticky-download" aria-hidden="true">
   <a href={href} class="btn btn-amber" tabindex="-1">{t('nav.download')}</a>

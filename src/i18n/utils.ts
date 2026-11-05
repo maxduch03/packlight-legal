@@ -31,6 +31,7 @@ export const routeSlugs = {
   thanks: { fr: 'sur-mesure/merci', en: 'tailored/thanks' },
   about: { fr: 'a-propos', en: 'about' },
   partners: { fr: 'partenaires', en: 'partners' },
+  multi: { fr: 'multi', en: 'multi' },
 } as const;
 
 export type RouteKey = keyof typeof routeSlugs;
