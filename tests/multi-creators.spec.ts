@@ -23,6 +23,7 @@ test('/en/creators : formulaire Formspree, envoi AJAX', async ({ page }) => {
   );
   await page.goto('/en/creators');
   await expect(page.locator('h1')).toContainText('30 %');
+  await expect(page.locator('#terms')).toContainText('€20');
   const form = page.locator('form.creator-form');
   await expect(form).toHaveAttribute('action', /^https:\/\/formspree\.io\/f\//);
   await page.fill('#cr-name', 'Test');

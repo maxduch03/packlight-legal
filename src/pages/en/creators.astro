@@ -31,6 +31,13 @@ const steps = [
   { t: 'Monthly report', d: 'Each month you receive your numbers: installs, trips generated, Tailored sales and the commission owed.' },
 ];
 
+const terms = [
+  { t: 'Monthly payout', d: 'Commission is paid every month for the previous month, by bank transfer.' },
+  { t: '€20 minimum', d: 'A payout is sent once your balance reaches €20; below that, it carries over to the next month.' },
+  { t: 'No exclusivity', d: 'You are free to work with other apps and brands.' },
+  { t: 'Stop anytime', d: 'You can leave the programme whenever you like. Commission already earned is still paid.' },
+];
+
 const faq = [
   {
     q: 'What exactly earns commission?',
@@ -110,8 +117,20 @@ const faq = [
     </div>
   </section>
 
+  <!-- TERMS -->
+  <section class="section" id="terms">
+    <div class="container">
+      <h2>Terms</h2>
+      <ul class="terms">
+        {terms.map((x) => (
+          <li><strong>{x.t}</strong><p>{x.d}</p></li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
   <!-- FORM -->
-  <section class="section" id="apply">
+  <section class="section section-sand" id="apply">
     <div class="container">
       <div class="apply">
         <h2>Apply to the programme</h2>
@@ -212,6 +231,10 @@ const faq = [
   .faq-item h3 { margin-bottom: 0.35rem; }
   .faq-item p { margin: 0; color: var(--ink-soft); }
 
+  .terms { list-style: none; padding: 0; margin: 1.5rem 0 0; display: grid; gap: 1rem; }
+  .terms li { border-left: 3px solid var(--teal); padding: 0.2rem 0 0.2rem 1rem; }
+  .terms p { margin: 0.25rem 0 0; color: var(--ink-soft); }
+
   .apply {
     max-width: 560px;
     margin: 0 auto;
@@ -246,6 +269,7 @@ const faq = [
   @media (min-width: 720px) {
     .perks { grid-template-columns: repeat(3, 1fr); }
     .faq { grid-template-columns: repeat(2, 1fr); }
+    .terms { grid-template-columns: repeat(2, 1fr); gap: 1.25rem 2rem; }
     .apply { padding: 2.5rem; }
   }
 </style>
